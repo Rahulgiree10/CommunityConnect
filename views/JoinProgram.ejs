@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
-    <title>Organization Page</title>
+    <title>Join Program</title>
     <style>
         body {
             margin: 0;
@@ -29,9 +29,9 @@
         }
 
         .button {
-            background-color: white;
+            background-color: #358698;
             border: none;
-            color: black;
+            color: white;
             padding: 20px;
             text-align: center;
             text-decoration: none;
@@ -55,7 +55,7 @@
         .content {
             flex: 1;
             font-family: Pangolin;
-            background-color: #E5E5E5;
+            background-color: black;
             color: white;
             padding: 20px;
             margin-left: 220px;
@@ -67,9 +67,9 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: white;
+            background-color: #358698;
             border: none;
-            color: black;
+            color: white;
             padding: 10px 15px;
             text-align: center;
             text-decoration: none;
@@ -88,56 +88,64 @@
             transform: translateY(4px);
         }
 
-        .profile-section {
-            background-color: black;
+        .search-container {
             margin-top: 20px;
-            /* Add margin-top to create space between Back button and profile-section */
-            border-radius: 10%;
-            margin-left: 400px;
-            margin-right: 400px;
-            height: 80%;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
 
-        .profile-picture {
-            max-width: 40%;
-            /* Adjust the maximum width as needed */
-            margin-top: 20px;
-            border-radius: 50%;
-            /* Make the image round */
-            overflow: hidden;
-            /* Ensure the image stays within the rounded border */
+        .search-bar {
+            flex: 1;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
         }
 
-        .profile-button {
-            background-color: transparent;
-            border: 2px solid white;
+        .search-button {
+            background-color: #358698;
+            border: none;
             color: white;
-            /* Set text color to match the border color */
-            padding: 10px 20px;
-            /* Adjust padding as needed */
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
             font-size: 16px;
-            /* Adjust font size as needed */
             cursor: pointer;
             border-radius: 8px;
-            /* Optional: Add border-radius for rounded corners */
+            margin-left: 10px;
         }
 
-        .profile-button:hover {
-            background-color: white;
-            color: #333;
-            /* Set text color on hover */
+        .search-button:hover
+        {
+            background-color: #464A4B;
         }
 
-        .profile-button:active {
-            background-color: #ccc;
-            /* Set background color when button is pressed */
-            border-color: #ccc;
-            /* Set border color when button is pressed */
+        .program-details {
+            display: inline-block;
+            border: 2px solid white;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            text-align: center;
         }
 
-        
+        .program-details strong {
+            display: block;
+            margin-bottom: 10px;
+        }
 
+        .p-button {
+            background-color: #358698;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
     </style>
 </head>
 
@@ -145,26 +153,23 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <img src="/public/images/logob.png" alt="Logo">
         <img src="/public/images/logob.png" alt="Logo"><br><br>
-        <button class="button">Create A Program</button><br><br>
-        <button class="button">Created Programs</button><br><br>
-        <button class="button">Link Khalti Account</button>
+        <img src="/public/images/logob.png" alt="Logo"><br><br>
+        <button class="button">Join Program</button><br><br>
+        <button class="button">Joined Programs</button><br><br>
     </div>
 
     <!-- Content -->
     <div class="content">
         <a href="#" class="back-button">Back</a><br><br><br><br><br><br>
-        <div class="profile-section">
-            <img src="/public/images/s.jpg" class="profile-picture" alt="profile-picture"><br><br><br>
-            <button class="profile-button">Change</button><br><br>
-            <h1>Profile Details</h1><br>
-            <strong>Name</strong><br><br>
-            <strong>Email</strong><br><br>
-            <strong>Address</strong><br><br>
-            <strong>Total points:1112</strong><br>
-            <button class="button">Redeem</button><br><br>
-            <button class="button">Logout</button><br>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search...">
+            <button class="search-button">Search</button>
+        </div>
+        <br>
+        <br>
+        <div class="program-details">
+            <strong class="">Program Title:</strong>
         </div>
     </div>
 
