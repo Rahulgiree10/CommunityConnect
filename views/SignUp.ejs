@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/Signup.css">
+    <title>Signup page</title>
+    <style>
+        body {
+            background: black;
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo-section img {
+            width: 200px;
+            height: 200px;
+            margin-top: 0px;
+            color: white;
+        }
+
+        .signup-container {
+            background-color: transparent;
+            padding: 20px;
+            text-align: center;
+            margin: 20px;
+            width: 300px;
+            margin: auto;
+            /* Center the container */
+        }
+
+        .input-container {
+            margin-bottom: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select,
+        button {
+            padding: 8px;
+            background: transparent;
+            border: 1px solid white;
+            /* White border */
+            color: white;
+        }
+
+        .login a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .image-section {
+            background-color: transparent;
+            text-align: left;
+        }
+
+
+        .signup {
+            background-color: #358698;
+            color: #fff;
+            border: none;
+            padding: 10px 120px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .p1 {
+            color: white;
+        }
+
+        .login {
+            background-color: #358698;
+            color: #fff;
+            border: none;
+            padding: 10px 120px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        select {
+            background-color: black;
+            color: white;
+        }
+
+        /* Style for the dropdown options */
+        select option {
+            background-color: black;
+            color: white;
+        }
+
+        /* Style for the dropdown when options are open */
+        select:focus {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-section">
+        <img src="/images/logow.png" alt="Project Logo">
+    </div>
+    <div class="signup-container">
+
+        <form action="#" method="post">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <br>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <br>
+            <input type="text" id="name" name="name" placeholder="Name" required>
+            <br>
+            <input type="text" id="address" name="address" placeholder="Address" required>
+            <br>
+            <select id="userType" name="userType" required>
+                <option value="" disabled selected>Signup As</option>
+                <option value="organization">Organization</option>
+                <option value="member">Member</option>
+            </select>
+            <br>
+            <input class="image-section" type="file" id="profilePic" name="profilePic">
+
+            <br>
+            <div>
+                <button class="signup" c>Signup</button>
+            </div>
+            <div>
+                <p class="p1">Already have an account?</p>
+                <button class="login"><a href="/login">Login</a></button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

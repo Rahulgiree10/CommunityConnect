@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/Welcome.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Nav bar */
+        .navbar {
+            background-color: transparent;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Pangolin', cursive;
+        }
+
+        .nav-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-list li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .button-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .login-btn,
+        .signup-btn {
+            background-color: #358698;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .login-btn a,
+        .signup-btn a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Nav bar */
+
+        /* Logo */
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .logo-section img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+
+        /* Brand section */
+        .name {
+            margin-top: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Adjustments for smaller screens */
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-list li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .button-section {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                margin: 10px;
+            }
+
+            .logo-section img {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar section -->
+    <header>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="button-section">
+                <button class="login-btn"><a href="/login">Login</a></button>
+                <button class="signup-btn"><a href="/signup">Signup</a></button>
+            </div>
+        </nav>
+        <div class="logo-section">
+            <img src="/images/logoW.png" alt="Project Logo">
+            <p class="name">Community Connect</p>
+        </div>
+
+        <div class="info">
+            <p>“A platform where people can connect and plan social works in an easy manner.”</p>
+        </div>
+    </header>
+    <!-- End Navbar section -->
+</body>
+</html>
