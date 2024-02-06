@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         profilePic: {
             type: DataTypes.STRING,
         },
+        otp: {
+            type: DataTypes.INTEGER,
+            allowNull:true,
+        },
     });
     
     return User;

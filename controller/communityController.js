@@ -1,5 +1,9 @@
 const db = require("../model/community");
 const bcrypt = require('bcrypt');
+const sendEmail = require("../services/emailService");
+const { text } = require("express");
+const session = require('express-session');
+
 
 //logic for landing page
 exports.index = async (req, res) => {
@@ -72,3 +76,104 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
+exports.renderForgotPassword = (req, res) => {
+  res.render("OTPSend");
+};
+
+
+exports.verifyEmail = async (req, res) => {
+  const { email } = req.body;
+  
+  const foundUser = await db.user.findOne({
+    where: {
+      email: email,
+    },
+  });
+
+  if (!foundUser) {
+    console.log("Email is not registered yet");
+    res.redirect("OTPSend");
+    return;
+  }
+
+  console.log("Email is registered");
+  try {
+    req.session.userEmail = email;
+
+    const OTP = Math.floor(100000 + Math.random() * 900000);
+    const message = "Your OTP is: " + OTP + ".";
+
+    const options={
+      to: email,
+      text: message,
+      subject: "Reset password",
+    }
+
+    await sendEmail(options);
+
+    foundUser.otp = OTP;
+
+    await foundUser.save();
+    res.render("OTPEnter");
+
+  } catch (e) {
+    console.log("Error in sending the email.");
+    console.log(e.message);
+    res.render("OTPSend", { error: "Error sending email. Please try again later." });
+  }
+};
+
+
+
+exports.renderOTPSend = (req, res) => {
+  res.render("OTPEnter");
+};
+
+
+exports.verifyOTP = async (req, res) => {
+  const { otp } = req.body;
+  const email= req.session.userEmail;
+  console.log(email);
+  const foundUser = await db.user.findOne({
+    where: {
+      email:email,
+    },
+  });
+
+  if (foundUser!=null &&foundUser.otp==otp) {
+    res.redirect("/resetPassword");
+  }
+  else{
+    res.redirect("/OTPVerify")
+  }
+};
+
+
+exports.renderEnterNewPassword = (req, res) => {
+  res.render("EnterNewPassword");
+};
+
+exports.resetPassword= async (req,res)=>{
+  const {newPassword,confirmNewPassword}=req.body
+  const email= req.session.userEmail;
+
+  if (newPassword!=confirmNewPassword){
+    res.redirect("/resetPassword")
+  }
+  else{
+    const foundUser= await db.user.findOne({
+      where:{
+        email:email
+      }
+    })
+      const encPassword=bcrypt.hashSync(newPassword,10)
+      console.log(encPassword);
+      foundUser.password = encPassword;
+      foundUser.otp = null;
+      foundUser.save();
+      delete req.session.userEmail;
+      res.redirect('/login')
+  }
+}

@@ -47,18 +47,56 @@
         .p1 {
             color: white;
         }
+
+        .container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    outline: none;
+}
+
+.container input:focus {
+    border-color: #358698;
+}
+
+.container:before {
+    content: "\f0e0"; /* FontAwesome envelope icon */
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #ccc;
+    font-size: 18px;
+}
+
+.container input[type="email"] {
+    padding-left: 30px; /* Space for the icon */
+}
+
     </style>
 </head>
 
 <body>
     <div class="logo-section">
-        <img src="/public/images/logoW.png" alt="Project Logo">
+        <img src="/images/logoW.png" alt="Project Logo">
     </div>
     <div class="OTP-container">
         <form action="/OTPSend" method="post">
             <br>
             <div>
-                <button class="Send">Send OTP</button>
+            <div class="container">
+                <input type="email" id="email" name="email" placeholder="email" required>
+            </div>
+                <button type="submit" class="Send">Send OTP</button>
             </div>
         </form>
     </div>
