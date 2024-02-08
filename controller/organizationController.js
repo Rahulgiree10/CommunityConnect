@@ -1,5 +1,6 @@
 const db = require("../model/community");
 
 exports.renderOrganizationHome = async (req, res) => {
-    res.render("organizationHome");
+    const user=req.user;
+    res.render("organizationHome",{user:user});
 }

@@ -1,8 +1,11 @@
 const db = require("../model/community");
 const bcrypt = require('bcrypt');
 const sendEmail = require("../services/emailService");
+const jwt=require('jsonwebtoken');
 const { text } = require("express");
 const session = require('express-session');
+const dotenv=require('dotenv')
+dotenv.config()
 
 
 //logic for landing page
@@ -22,10 +25,19 @@ exports.renderSignup = async (req, res) => {
 exports.signup = async (req, res) => {
   try {
     // The user data is extracted from the request body
-    const { email, password, name, address, userType, profilePic } = req.body;
+    const { email, password, name, address, userType  } = req.body;
+
+    if (!req.file) {
+      // Handle case where no file is uploaded
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    
+    const profilePic = req.file.filename;
 
     const encPassword = bcrypt.hashSync(password, 10);
     console.log(encPassword);
+
 
     const newUser = await db.user.create({
       email,
@@ -36,6 +48,7 @@ exports.signup = async (req, res) => {
       profilePic,
     });
 
+    // res.status(200).json({ profilePic: profilePic });
     res.render("login");
   } catch (error) {
     console.error("Error creating user:", error);
@@ -56,6 +69,13 @@ exports.login = async (req, res) => {
 
     if (foundUser) {
       if (bcrypt.compareSync(password, foundUser.password)) {
+        var token = jwt.sign({ id: foundUser.id }, process.env.JWT_SECRET_KEY, {
+          expiresIn: 86400,
+        });
+
+        console.log(token)
+        res.cookie("token", token);
+
         // Login the user according to the type of the user
         if (foundUser.userType === "Organization") {
           return res.redirect("/organizationHome");

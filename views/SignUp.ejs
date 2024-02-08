@@ -117,7 +117,7 @@
     </div>
     <div class="signup-container">
 
-        <form action="#" method="post">
+        <form action="/signup" method="post" enctype="multipart/form-data">
             <input type="email" id="email" name="email" placeholder="Email" required>
             <br>
             <input type="password" id="password" name="password" placeholder="Password" required>
@@ -132,11 +132,11 @@
                 <option value="member">Member</option>
             </select>
             <br>
-            <input class="image-section" type="file" id="profilePic" name="profilePic">
+            <input class="image-section" type="file" name="profilePic" accept="Image/*">
 
             <br>
             <div>
-                <button class="signup" c>Signup</button>
+                <button class="signup" type="submit">Signup</button>
             </div>
             <div>
                 <p class="p1">Already have an account?</p>

@@ -91,7 +91,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <img src="/images/logob.png" alt="Logo">
-        <img src="/images/logob.png" alt="Logo"><br><br>
+        <img src="http://localhost:4000/<%= user.profilePic %>" alt="profilePicture"><br><br>
         <button class="button">Create A Program</button><br><br>
         <button class="button">Created Programs</button><br><br>
         <button class="button">Link Khalti Account</button>
@@ -99,7 +99,7 @@
 
     <!-- Content -->
     <div class="content">
-        <h1>Welcome OrganizationName To Community Connect</h1><br><br>
+        <h1>Welcome <%=user.name%> To Community Connect</h1><br><br>
 
         <div class="image-grid">
             <img src="/images/s.jpg" alt="Image 1">

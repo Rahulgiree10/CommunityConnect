@@ -1,7 +1,7 @@
 const router = require ('express').Router();
 const organizationController = require ('../controller/organizationController');
-const { checkAuth } = require('../middleware/authMiddleware');
+const authenticateUser=require('../middleware/authMiddleware')
 
-router.route('/organizationHome').get(organizationController.renderOrganizationHome);
+router.route('/organizationHome').get(authenticateUser.isAuthenticated,organizationController.renderOrganizationHome)
 
 module.exports = router;
