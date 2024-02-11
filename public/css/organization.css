@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 5px 10px;
+    background-color: burlywood;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    bacbackground-color: #b99a76;
+    transform: translateY(-2px);kground-color: #464A4B;
+}
+
+.button:active {
+    background-color: #464A4B;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.content {
+    flex: 1;
+    background-image: url('/images/socialwork.jpg');
+    background-size: cover;
+    /* Cover the entire viewport */
+    background-position: center;
+    /* Center the background image */
+    background-repeat: no-repeat;
+    /* Prevent the background image from repeating */
+    background-attachment: fixed;    
+    padding: 20px;
+    margin-left: 50px;
+    text-align: center;
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+.content footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+}
+
+.profile
+{
+    border-radius: 50%;
+}
+
+.content h1
+{
+    margin-top: 250px;
+    color: darkgoldenrod; /* Change the text color */
+    font-size: 30px;
+    background-color: rgba(255, 255, 224, 0.06); /* Highlight the text */
+    padding: 5px; /* Add some padding to make the highlight more visible */
+}
+
+.content h2
+{
+    margin-top: 10px;
+    color: darkgoldenrod; /* Change the text color */
+    font-size: 20px;
+    background-color: rgba(255, 255, 224, 0.06); /* Highlight the text */
+    padding: 5px; /* Add some padding to make the highlight more visible */
+}

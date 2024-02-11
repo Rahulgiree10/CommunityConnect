@@ -1,0 +1,139 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 5px 10px;
+    background-color: burlywood;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #b99a76;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    background-color: #464A4B;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.content {
+    flex: 1;
+    background-color: #E5E5E5;
+    color: darkgoldenrod;
+    padding: 20px;
+    margin-left: 220px;
+    text-align: center;
+    position: relative;
+    flex: 1;
+    background-image: url('/images/socialwork.jpg');
+    background-size: cover;
+    /* Cover the entire viewport */
+    background-position: center;
+    /* Center the background image */
+    background-repeat: no-repeat;
+    /* Prevent the background image from repeating */
+    background-attachment: fixed;  
+}
+
+.admin-section {
+    background-color: lightyellow;
+    border-radius: 10%;
+    margin-left: 400px;
+    margin-right: 400px;
+    height: 60%;
+    margin-top: 130px;
+    margin-bottom: 20px;
+}
+
+.admin-picture {
+    max-width: 40%;
+    /* Adjust the maximum width as needed */
+    height: auto;
+    margin-top: 20px;
+    border-radius: 50%;
+    /* Make the image round */
+    overflow: hidden;
+    /* Ensure the image stays within the rounded border */
+}
+
+.content h1 {
+    color: #333; /* Set text color to dark gray */
+    font-size: 24px; /* Set font size to 24 pixels */
+    font-weight: bold; /* Set font weight to bold */
+    font-family: Arial, sans-serif; /* Set font family */
+    text-align: center; /* Align text to center */
+    text-transform: uppercase; /* Transform text to uppercase */
+    text-decoration: underline; /* Add underline decoration */
+}
+
+.content footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+}
+
+.organization-name {
+    text-align: center; /* Align text to center */
+    margin-bottom: 20px; /* Add bottom margin for spacing */
+}
+
+.organization-name h2 {
+    font-size: 17px; /* Set font size to 24 pixels */
+    font-weight: bold; /* Set font weight to bold */
+    text-transform: uppercase; /* Transform text to uppercase */
+}
+
+.organization-name .name-box {
+    background-color: burlywood; /* Change background color for the box */
+    padding: 5px; /* Add padding to create space around the highlight */
+    border-radius: 5px; /* Add rounded corners to the box */
+    display: inline-block; /* Display the box as an inline block */
+    border: 2px solid #333; /* Add border around the box */
+    width: 200px; /* Set fixed width */
+    height: 50px; /* Set fixed height */
+}
+
+.organization-name .name-box a{
+    text-decoration: none; /* Remove underline from all anchor tags */
+    color: black; /* Set text color to dark gray */
+}

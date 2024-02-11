@@ -10,7 +10,7 @@ dotenv.config()
 
 //logic for landing page
 exports.index = async (req, res) => {
-  res.render("welcome");
+  res.render("Welcome");
 };
 
 exports.renderLogin = async (req, res) => {
@@ -96,6 +96,11 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+exports.logout= async(req, res)=>{
+  res.clearCookie("token")
+  res.redirect("/login")
+}
 
 
 exports.renderForgotPassword = (req, res) => {

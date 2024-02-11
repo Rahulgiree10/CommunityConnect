@@ -16,6 +16,7 @@ router.route('/OTPSend').get(communityController.renderForgotPassword).post(comm
 router.route('/OTPVerify').get(communityController.renderOTPSend).post(communityController.verifyOTP);
 
 router.route('/resetPassword').get(communityController.renderEnterNewPassword).post(communityController.resetPassword);
+router.route('/logout').get(communityController.logout);
 
 router.route('/organizationHome').get();
 

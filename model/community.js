@@ -28,5 +28,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("./userModel.js")(sequelize, DataTypes);
+db.PAN = require("./PANModel.js")(sequelize, DataTypes);
+
+//Relation between users and PAN
+db.user.hasOne(db.PAN)
+db.PAN.belongsTo(db.user)
 
 module.exports = db;
+

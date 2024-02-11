@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/verifyOrganization.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <title>Verify Organization</title>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/organizationHome"><img src="/images/logob.png" alt="Logo"></a>
+        <a href="/profile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>"
+                alt="profilePicture"></a><br><br>
+        <button class="button">Create A Program</button><br><br>
+        <button class="button">Created Programs</button><br><br>
+        <button class="button">Link Khalti Account</button>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="main-container">
+            <form action="/verifyPAN" method="post" enctype="multipart/form-data">
+                <div class="input-container">
+                    <input type="text" id="PANNumber" name="PANNumber" class="PANNumber" placeholder="Enter your PAN Number">
+                </div>
+                <div class="input-container">
+                    <input type="text" id="PANName" name="PANName" class="PANName" placeholder="Enter your PAN Name">
+                </div>
+                <div class="image-section">
+                    <input type="file" name="PANPic" accept="Image/*">
+                </div>
+                <button class="button">Submit</button>
+            </form>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer-content">
+                    <p>&copy; 2024 Community Connect. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>

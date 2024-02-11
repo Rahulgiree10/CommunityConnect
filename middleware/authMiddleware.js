@@ -3,7 +3,8 @@ const { promisify } = require('util');
 const user = require('../model/community').user; // Assuming this is where your user model is imported from
 
 //To use .env file use these two lines 
-const dotenv=require('dotenv')
+const dotenv=require('dotenv');
+const { CLIENT_RENEG_LIMIT } = require('tls');
 dotenv.config()
 
 exports.isAuthenticated = async (req, res, next) => {

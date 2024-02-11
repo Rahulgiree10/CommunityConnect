@@ -1,6 +1,6 @@
 const multer = require('multer');
 
-// Configure the storage destination and filename
+// Configure the storage destination and filename of profile picture
 const profileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './uploads/profilePicture');
@@ -10,4 +10,14 @@ const profileStorage = multer.diskStorage({
     }
 });
 
-module.exports = { multer, profileStorage };
+// Configure the storage destination and filename of PANPicture
+const PANPictureStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads/PANPicture');
+    },
+    filename: (req, file, cb) => {
+        cb(null, 'PAN-' + Date.now() + '-' + file.originalname);
+    }
+});
+
+module.exports = { multer, profileStorage, PANPictureStorage};

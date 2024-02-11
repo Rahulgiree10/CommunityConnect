@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/AdminHome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <title>Organization Page</title>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/AdminHome"><img src="/images/logob.png" alt="Logo"></a>
+        <a href="/AdminViewPAN"><button class="button">Verify PAN</button></a><br><br>
+        <button class="button">Verify Document</button><br><br>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="organization-section">
+            <% user.forEach(user=> { %>
+                    <div class="organization-name">
+                        <!-- Organization Name Box -->
+                        <div class="name-box">
+                            <h2>
+                                <A href="AdminVerifyPANEach"><%= user.name %></A>
+                            </h2>
+                        </div>
+                    </div>
+                        <% }) %>
+
+                            <!-- Footer -->
+                            <footer>
+                                <div class="footer-content">
+                                    <p>&copy; 2024 Community Connect. All rights reserved.</p>
+                                </div>
+                            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>
