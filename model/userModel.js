@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull:true,
         },
+        verification: {
+            type: DataTypes.ENUM('NOT VERIFIED', 'VERIFIED'),
+            allowNull: false,
+            defaultValue: 'NOT VERIFIED'
+        }
     });
     
     return User;

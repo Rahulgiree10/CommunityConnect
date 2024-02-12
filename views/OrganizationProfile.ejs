@@ -23,8 +23,10 @@
     <!-- Content -->
     <div class="content">
         <div class="profile-section">
-            <img src="http://localhost:4000/<%= user.profilePic %>" class="profile-picture"
-                alt="profile-picture"><br><br><br>
+            <img src="http://localhost:4000/<%= user.profilePic %>" class="profile-picture" alt="profile-picture"><br><br>
+            <strong style="color: <%= user.verification === 'NOT VERIFIED' ? 'red' : 'green' %>">
+                <%= user.verification %>
+            </strong><br><br>
             <a href="/VerifyPAN"><button class="profile-button">Verify Organization</button></a><br><br>
             <h1>Profile Details</h1><br>
             <strong>Name: <%= user.name %></strong><br><br>

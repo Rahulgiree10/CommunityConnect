@@ -15,6 +15,8 @@ app.set("view engine", "ejs");
 
 app.use(express.static(__dirname+ "/public"));
 app.use(express.static(__dirname+ "/uploads/profilePicture"));
+app.use(express.static(__dirname+ "/uploads/PANPicture"));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -7,6 +7,8 @@ router.route('/adminHome').get(authenticateUser.isAuthenticated,adminController.
 
 router.route('/AdminViewPAN').get(authenticateUser.isAuthenticated,adminController.renderAdminViewPAN)
 
-router.route('/AdminVerifyPANEach').get(adminController.renderEachAdminViewPAN);
+router.route('/AdminVerifyPANEach/:id').get(adminController.renderEachAdminViewPAN);
+
+router.route('/AdminVerifyPANEach/:id/verify').post(authenticateUser.isAuthenticated, adminController.updateVerification);
 
 module.exports = router;

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/AdminHome.css">
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
-    <title>Organization Page</title>
+    <title>Admin Verify Each</title>
 </head>
 
 <body>
@@ -14,14 +14,51 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="/AdminHome"><img src="/images/logob.png" alt="Logo"></a>
-        <a href="/AdminViewPAN"><button class="button">Verify PAN</button></a><br><br>
-        <button class="button">Verify Document</button><br><br>
+        <button class="button">
+            <%= user.name %>
+        </button><br><br>
     </div>
 
     <!-- Content -->
     <div class="content">
         <div class="organization-section">
+            <!-- Table for PAN details -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>PAN Number</th>
+                        <th>PAN Name</th>
+                        <th>PAN Picture</th>
+                        <th>Name of Organization</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% if (user) { %>
+                            <td>
+                                <%= user.PAN.PANNumber %>
+                            </td>
+                            <td>
+                                <%= user.PAN.PANName %>
+                            </td>
+                            <td><img src="http://localhost:4000/<%= user.PAN.PANPic %>" alt="PAN Picture"
+                                    class="pan-image"></td>
+                            <% } else { %>
+                                <td colspan="3">No PAN details available</td>
+                                <% } %>
+                                    <td>
+                                        <%= user.name %>
+                                    </td>
+                    </tr>
+                </tbody>
+            </table>
 
+            <!-- Verify Button Form -->
+            <form action="/AdminVerifyPANEach/<%= user.id %>/verify" method="post">
+                <input type="hidden" name="userId" value="<%= user.id %>">
+                <button class="button" type="submit">Verify</button>
+            </form>
+                        
 
             <!-- Footer -->
             <footer>
@@ -33,5 +70,6 @@
     </div>
 
 </body>
+
 
 </html>

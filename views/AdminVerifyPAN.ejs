@@ -22,14 +22,14 @@
     <div class="content">
         <div class="organization-section">
             <% user.forEach(user=> { %>
-                    <div class="organization-name">
+                <a href="/AdminVerifyPANEach/<%= user.id%>"><div class="organization-name">
                         <!-- Organization Name Box -->
                         <div class="name-box">
                             <h2>
-                                <A href="AdminVerifyPANEach"><%= user.name %></A>
+                                <%= user.name %>
                             </h2>
                         </div>
-                    </div>
+                    </div></a>
                         <% }) %>
 
                             <!-- Footer -->

@@ -137,3 +137,31 @@ body {
     text-decoration: none; /* Remove underline from all anchor tags */
     color: black; /* Set text color to dark gray */
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #3498db; /* Border color for the entire table */
+    margin: 0 auto; /* Center the table horizontally */
+
+}
+
+table th, table td {
+    border: 1px solid #3498db; /* Border color for each cell */
+    padding: 12px; /* Increased padding for better spacing */
+    text-align: left;    
+    color: black; /* Header text color */
+}
+
+table th {
+    background-color: #2980b9; /* Header background color */
+}
+
+table tbody tr {
+    background-color: #d9edf7; /* Background color for even rows */
+}
+
+.pan-image {
+    width: 300px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
