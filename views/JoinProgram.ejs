@@ -4,173 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/joinProgram.css">
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <title>Join Program</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            min-height: 100vh;
-        }
 
-        .sidebar {
-            width: 200px;
-            background-color: #D9D9D9;
-            padding: 20px;
-            position: fixed;
-            height: 100%;
-        }
-
-        .sidebar img {
-            max-width: 50%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            background-color: #358698;
-            border: none;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 2px 1px;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-
-        .button:hover {
-            background-color: #464A4B;
-        }
-
-        .button:active {
-            background-color: #464A4B;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
-
-        .content {
-            flex: 1;
-            font-family: Pangolin;
-            background-color: black;
-            color: white;
-            padding: 20px;
-            margin-left: 220px;
-            text-align: center;
-            position: relative;
-        }
-
-        .back-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #358698;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-
-        .back-button:hover {
-            background-color: #464A4B;
-        }
-
-        .back-button:active {
-            background-color: #464A4B;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
-
-        .search-container {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-bar {
-            flex: 1;
-            height: 30px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: white;
-        }
-
-        .search-button {
-            background-color: #358698;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 8px;
-            margin-left: 10px;
-        }
-
-        .search-button:hover
-        {
-            background-color: #464A4B;
-        }
-
-        .program-details {
-            display: inline-block;
-            border: 2px solid white;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .program-details strong {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .p-button {
-            background-color: #358698;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-    </style>
 </head>
 
 <body>
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <img src="/public/images/logob.png" alt="Logo"><br><br>
-        <img src="/public/images/logob.png" alt="Logo"><br><br>
-        <button class="button">Join Program</button><br><br>
-        <button class="button">Joined Programs</button><br><br>
+        <a href="/memberHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
+        <a href="/memberProfile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>"
+                alt="profilePicture"></a><br><br>
+        <a href="/joinProgram"><button class="button">Join Program</button></a><br><br>
+        <button class="button">Joined Programs</button>
     </div>
 
     <!-- Content -->
     <div class="content">
-        <a href="#" class="back-button">Back</a><br><br><br><br><br><br>
         <div class="search-container">
             <input type="text" class="search-bar" placeholder="Search...">
-            <button class="search-button">Search</button>
+            <form action="/searchProgram" method="POST">
+                <button type="submit" class="button">Search</button>
+            </form>
         </div>
-        <br>
-        <br>
-        <div class="program-details">
-            <strong class="">Program Title:</strong>
+
+        <div class="program-section">
+            <div class="program-name">
+                <!-- program Name Box -->
+                <div class="name-box">
+                    <table>
+                        <tr>
+                            <th>Program Title</th>
+                            <th>Program Time</th>
+                            <th>Program Date</th>
+                            <th>Program Location</th>
+                            <th>Program Description</th>
+                            <th>Action</th>
+                        </tr>
+                        <% program.forEach(program=> { %>
+                            <tr>
+                                <td>
+                                    <%= program.programTitle %>
+                                </td>
+                                <td>
+                                    <%= program.programTime %>
+                                </td>
+                                <td>
+                                    <%= program.programDate %>
+                                </td>
+                                <td>
+                                    <%= program.programLocation %>
+                                </td>
+                                <td>
+                                    <%= program.programDescription %>
+                                </td>
+                                <td>
+                                    <form action="" method="POST">
+                                        <button type="submit" class="join">Join</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+
+                    </table>
+                </div>
+            </div>
         </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 Community Connect. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
 </body>

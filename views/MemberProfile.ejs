@@ -13,25 +13,22 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="/organizationHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
-        <a href="/profile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>" alt="profilePicture"></a><br><br>
-        <a href="/createProgram"><button class="button">Create A Program</button></a><br><br>
-        <a href="/createdPrograms"><button class="button">Created Programs</button></a><br><br>
-        <button class="button">Link Khalti Account</button>
+        <a href="/memberHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
+        <a href="/memberProfile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>" alt="profilePicture"></a><br><br>
+        <a href="/joinProgram"><button class="button">Join Program</button></a><br><br>
+        <button class="button">Joined Programs</button>
     </div>
 
     <!-- Content -->
     <div class="content">
         <div class="profile-section">
             <img src="http://localhost:4000/<%= user.profilePic %>" class="profile-picture" alt="profile-picture"><br><br>
-            <strong style="color: <%= user.verification === 'NOT VERIFIED' ? 'red' : 'green' %>">
-                <%= user.verification %>
-            </strong><br><br>
-            <a href="/VerifyPAN"><button class="profile-button">Verify Organization</button></a><br><br>
-            <h1>Profile Details</h1><br>
+            <h1>Profile Details</h1>
             <strong>Name: <%= user.name %></strong><br><br>
             <strong>Email: <%= user.email %></strong><br><br>
             <strong>Address: <%= user.address %></strong><br><br>
+            <a href=""><button class="button">Redeem Points</button></a><br><br>
+            <strong>Address: Total Points:1112</strong><br><br>
             <a href="/logout"><button class="button">logout</button></a>
 
             <!-- Footer -->

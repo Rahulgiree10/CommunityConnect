@@ -13,7 +13,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="/AdminHome"><img src="/images/logob.png" alt="Logo"></a>
+        <a href="/AdminHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
         <button class="button">
             <%= user.name %>
         </button><br><br>
@@ -21,44 +21,39 @@
 
     <!-- Content -->
     <div class="content">
-        <div class="organization-section">
-            <!-- Table for PAN details -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>PAN Number</th>
-                        <th>PAN Name</th>
-                        <th>PAN Picture</th>
-                        <th>Name of Organization</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <% if (user) { %>
-                            <td>
-                                <%= user.PAN.PANNumber %>
-                            </td>
-                            <td>
-                                <%= user.PAN.PANName %>
-                            </td>
-                            <td><img src="http://localhost:4000/<%= user.PAN.PANPic %>" alt="PAN Picture"
-                                    class="pan-image"></td>
-                            <% } else { %>
-                                <td colspan="3">No PAN details available</td>
-                                <% } %>
-                                    <td>
-                                        <%= user.name %>
-                                    </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="section">
+            <!-- PAN Details Card -->
+            <div class="pan-card">
+                <% if (user) { %>
+                    <div class="pan-details">
+                        <div class="pan-picture">
+                            <img src="http://localhost:4000/<%= user.PAN.PANPic %>" alt="PAN Picture" class="pan-image">
+                        </div>
+                        <div class="pan-number">
+                            <strong>PAN Number:</strong>
+                            <%= user.PAN.PANNumber %>
+                        </div>
+                        <div class="pan-name">
+                            <strong>PAN Name:</strong>
+                            <%= user.PAN.PANName %>
+                        </div>
+                        <div class="organization-name">
+                            <strong>Name of Organization:</strong>
+                            <%= user.name %>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <div class="no-pan-details">No PAN details available</div>
+                        <% } %>
+            </div>
+
 
             <!-- Verify Button Form -->
             <form action="/AdminVerifyPANEach/<%= user.id %>/verify" method="post">
                 <input type="hidden" name="userId" value="<%= user.id %>">
                 <button class="button" type="submit">Verify</button>
             </form>
-                        
+
 
             <!-- Footer -->
             <footer>

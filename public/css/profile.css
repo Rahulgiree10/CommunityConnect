@@ -12,16 +12,23 @@ body {
 
 .sidebar {
     width: 200px;
-    background-color: white;
+    background-color: gray;
     padding: 20px;
     position: fixed;
     height: 100%;
 }
 
-.sidebar img {
+.logo {
     max-width: 50%;
     height: auto;
     margin-bottom: 20px;
+}
+
+.profile
+{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
 }
 
 .button {
@@ -60,14 +67,7 @@ body {
     text-align: center;
     position: relative;
     flex: 1;
-    background-image: url('/images/socialwork.jpg');
-    background-size: cover;
-    /* Cover the entire viewport */
-    background-position: center;
-    /* Center the background image */
-    background-repeat: no-repeat;
-    /* Prevent the background image from repeating */
-    background-attachment: fixed;  
+    background-color: white; 
 }
 
 .profile-section {
@@ -82,7 +82,7 @@ body {
 .profile-picture {
     max-width: 40%;
     /* Adjust the maximum width as needed */
-    height: auto;
+    height: 320px;
     margin-top: 20px;
     border-radius: 50%;
     /* Make the image round */
@@ -115,11 +115,6 @@ body {
     /* Set background color when button is pressed */
     border-color: #ccc;
     /* Set border color when button is pressed */
-}
-
-.profile
-{
-    border-radius: 50%;
 }
 
 .content footer {

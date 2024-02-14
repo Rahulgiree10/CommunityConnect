@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/createProgram.css">
+    <link rel="stylesheet" href="/css/edit.css">
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <title>Dashboard</title>
 
@@ -16,36 +16,29 @@
     <div class="sidebar">
         <a href="/organizationHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
         <a href="/profile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>" alt="profilePicture"></a><br><br>
-        <a href="/createProgram"><button class="button">Create A Program</button></a><br><br>
-        <a href="/createdPrograms"><button class="button">Created Programs</button></a><br><br>
-        <button class="button">Link Khalti Account</button>
+        <button class="button"><%=program.programTitle%></button>
     </div>
 
     <!-- Content -->
     <div class="content">
         <div class="main-container">
-            <form action="/createProgram" method="post">
+            <form action="/updateProgram/<%-program.id %>" method="post">
                 <div class="input-container">
-                    <input type="text" class="program-input" id="programTitle" name="programTitle"
-                        placeholder="programTitle">
+                    <input type="text" class="program-input" id="programTitle" name="programTitle" value="<%=program.programTitle%>" placeholder="programTitle">
                 </div>
                 <div class="input-container">
-                    <input type="time" class="program-input" id="programTime" name="programTime"
-                        placeholder="programTime">
+                    <input type="time" class="program-input" id="programTime" name="programTime" value="<%=program.programTime%>" placeholder="programTime">
                 </div>
                 <div class="input-container">
-                    <input type="date" class="program-input" id="programDate" name="programDate"
-                        placeholder="programDate">
+                    <input type="date" class="program-input" id="programDate" name="programDate" value="<%=program.programDate%>" placeholder="programDate">
                 </div>
                 <div class="input-container">
-                    <input type="text" class="program-input" id="programLocation" name="programLocation"
-                        placeholder="programLocation">
+                    <input type="text" class="program-input" id="programLocation" name="programLocation" value="<%=program.programLocation%>" placeholder="programLocation">
                 </div>
                 <div class="input-container">
-                    <textarea class="program-input" id="programDescription" name="programDescription"
-                        placeholder="programDescription"></textarea>
+                    <textarea class="program-input" id="programDescription" name="programDescription" placeholder="programDescription"><%=program.programDescription%></textarea>
                 </div>
-                <button class="button" type="submit">Create</button>
+                <button class="button" type="submit">Update</button>
             </form>
         </div>
 
