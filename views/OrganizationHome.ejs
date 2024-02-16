@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/organization.css">
+    <link rel="stylesheet" href="./dist/noty.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
     <title>Dashboard</title>
 </head>
 
@@ -14,7 +16,8 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="/organizationHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
-        <a href="/profile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>" alt="profilePicture"></a><br><br>
+        <a href="/profile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>"
+                alt="profilePicture"></a><br><br>
         <a href="/createProgram"><button class="button">Create A Program</button></a><br><br>
         <a href="/createdPrograms"><button class="button">Created Programs</button></a><br><br>
         <button class="button">Link Khalti Account</button>
@@ -22,7 +25,8 @@
 
     <!-- Content -->
     <div class="content">
-        <h1>Greetings!! <%=user.name%></h1>
+        <h1>Greetings!! <%=user.name%>
+        </h1>
         <h2>Create your first program here</h2>
         <a href="/createProgram"><button class="button">Create A Program</button></a><br><br>
 
@@ -33,7 +37,8 @@
             </div>
         </footer>
     </div>
-
+<%- include('./partials/noty') %>
+    
 </body>
 
 </html>

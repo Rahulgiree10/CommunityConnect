@@ -3,7 +3,8 @@ const userModel = require("../model/userModel");
 
 exports.renderOrganizationHome = async (req, res) => {
     const user = req.user;
-    res.render("organizationHome", { user: user });
+    const message = req.flash();
+    res.render("organizationHome", { user: user, message:message });
 }
 
 exports.renderProfile = async (req, res) => {

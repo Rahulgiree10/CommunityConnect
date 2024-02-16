@@ -3,13 +3,17 @@ const router = express.Router();
 const{profileStorage,multer}=require('../services/multerService');
 const communityController = require('../controller/communityController');
 const upload=multer({storage:profileStorage});
-
+const signupValidator = require('../Validator/validateRegistration');
 
 router.route("/").get(communityController.index);
 
+router.route("/AboutUs").get(communityController.AboutUs);
+
+router.route("/ContactUs").get(communityController.ContactUs);
+
 router.route("/login").get(communityController.renderLogin).post(communityController.login);
 
-router.route('/signup').get(communityController.renderSignup).post(upload.single('profilePic'),communityController.signup);
+router.route('/signup').get(communityController.renderSignup).post(upload.single('profilePic'),signupValidator,communityController.signup);
 
 router.route('/OTPSend').get(communityController.renderForgotPassword).post(communityController.verifyEmail);
 

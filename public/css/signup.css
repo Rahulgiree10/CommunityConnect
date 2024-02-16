@@ -158,3 +158,10 @@ body {
 .p1 {
     color: black;
 }
+
+.error-message {
+    color: black; /* Change the color to whatever you prefer */
+    font-size: 14px; /* Adjust font size as needed */
+    margin-bottom: 5px; /* Adjust spacing as needed */
+    background-color: white;
+}
