@@ -22,22 +22,24 @@
     <div class="content">
         <div class="organization-section">
             <% user.forEach(user=> { %>
-                <a href="/AdminVerifyPANEach/<%= user.id%>"><div class="organization-name">
+                <a href="/AdminVerifyPANEach/<%= user.id%>">
+                    <div class="organization-name">
                         <!-- Organization Name Box -->
                         <div class="name-box">
                             <h2>
                                 <%= user.name %>
                             </h2>
                         </div>
-                    </div></a>
-                        <% }) %>
+                    </div>
+                </a>
+                <% }) %>
 
-                            <!-- Footer -->
-                            <footer>
-                                <div class="footer-content">
-                                    <p>&copy; 2024 Community Connect. All rights reserved.</p>
-                                </div>
-                            </footer>
+                    <!-- Footer -->
+                    <footer>
+                        <div class="footer-content">
+                            <p>&copy; 2024 Community Connect. All rights reserved.</p>
+                        </div>
+                    </footer>
         </div>
     </div>
 

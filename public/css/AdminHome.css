@@ -60,13 +60,12 @@ body {
 
 .content {
     flex: 1;
-    background-color: white;
+    background-color: #E5E5E5;
     color: darkgoldenrod;
     padding: 20px;
     margin-left: 220px;
     text-align: center;
     position: relative;
-    flex: 1;
 }
 
 .admin-section {
@@ -139,7 +138,7 @@ body {
 
 /* Styles for PAN card */
 .section{
-    margin-top: 200px; /* Add margin to move the card downwards */
+    margin-top: 100px; /* Add margin to move the card downwards */
 }
 
 .pan-card {
@@ -163,7 +162,7 @@ body {
 }
 
 .pan-image:hover{
-    transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.8); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 /* Styles for PAN card */

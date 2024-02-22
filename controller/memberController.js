@@ -2,7 +2,8 @@ const db = require("../model/community");
 
 exports.renderMemberHome = async (req, res) => {
     const user = req.user;
-    res.render("memberHome",{user:user});
+    const message = req.flash();
+    res.render("memberHome",{user:user,message:message});
 }
 
 exports.renderMemberProfile = async (req, res) => {
@@ -32,3 +33,26 @@ exports.searchProgram = async (req, res) => {
         res.status(500).json({ error: 'Failed to search for programs' });
     }
 }
+
+// Controller function to handle program search
+exports.searchProgram = async (req, res) => {
+    try {
+        const { programName } = req.body; // Extracting the program name from the request body
+        const { programLocation } = req.body; // Extracting the program location from the request body
+        
+        // Querying the database for programs matching the search criteria
+        const programs = await db.program.findAll({
+            where: {
+                programTitle: { [db.Sequelize.Op.like]: `%${programName}%`},            
+                programLocation: { [db.Sequelize.Op.like]: `%${programLocation}%`},            
+            }
+        });
+        
+        const user = req.user;
+        res.render("joinProgram", { user: user, program: programs });
+    } catch (error) {
+        console.error('Error searching for programs:', error);
+        return res.redirect('/joinProgram');
+    }
+};
+

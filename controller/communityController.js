@@ -1,56 +1,51 @@
 const db = require("../model/community");
 const bcrypt = require('bcrypt');
 const sendEmail = require("../services/emailService");
-const jwt=require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const { text } = require("express");
 const session = require('express-session');
-const dotenv=require('dotenv');
+const dotenv = require('dotenv');
 const { validationResult } = require("express-validator");
 dotenv.config();
-
-
-exports.renderRoot= async (req,res)=>{
-  const user=req.authenticatedUser;
-  
-  console.log(user)
-  if(user && user.userType=='organization'){
-    res.redirect('/homepage')
-  }
-  else if(user && user.role=='admin'){
-    res.redirect('/example')
-  }else{
-    res.redirect('/')
-  }
-}
-
 
 //logic for landing page
 exports.index = async (req, res) => {
   res.render("Welcome");
 };
 
-exports.AboutUs = async(req, res) => {
+exports.AboutUs = async (req, res) => {
   res.render("AboutUs");
 }
 
-exports.ContactUs = async(req, res) => {
+exports.ContactUs = async (req, res) => {
   res.render("ContactUs");
 }
 
 exports.renderLogin = async (req, res) => {
-  res.render("login");
-};
-
-exports.renderSignup = async (req, res) => {
-  const signupErrors = req.session.signupErrors || [];
+  const validationErrors = req.session.validationErrors || [];
   const fData = req.session.fData || {};
   const message = req.flash();
 
-  delete req.session.signupErrors;
+  delete req.session.validationErrors;
   delete req.session.fData;
-  res.render("signup",{
-    message:message,
-    signupErrors: signupErrors,
+  res.render("login",
+    {
+      message: message,
+      validationErrors: validationErrors,
+      fData: fData,
+    });
+};
+
+exports.renderSignup = async (req, res) => {
+  const validationErrors = req.session.validationErrors || [];
+  const fData = req.session.fData || {};
+  const message = req.flash();
+
+  delete req.session.validationErrors;
+  delete req.session.fData;
+  res.render("signup", {
+    message: message,
+    validationErrors: validationErrors,
     fData: fData,
   });
 }
@@ -58,31 +53,29 @@ exports.renderSignup = async (req, res) => {
 //logic for storing data which is used while signing up and rendering to login page
 exports.signup = async (req, res) => {
   const result = validationResult(req);
-    
-  if (!result.isEmpty()) 
-  {
-    req.session.signupErrors = result.mapped();
+
+  if (!result.isEmpty()) {
+    req.session.validationErrors = result.mapped();
     req.session.fData = req.body;
     res.redirect("/signup");
-  } 
-  else 
-  {
+  }
+  else {
     try {
       // The user data is extracted from the request body
-      const { email, password, name, address, userType  } = req.body;
-  
-      if (!req.body.profilePic) {
+      const { email, password, name, address, userType } = req.body;
+
+      if (!req.file) {
         // Handle case where no file is uploaded
         return res.redirect("signup");
       }
-  
-      
+
+
       const profilePic = req.file.filename;
-  
+
       const encPassword = bcrypt.hashSync(password, 10);
       console.log(encPassword);
-  
-  
+
+
       const newUser = await db.user.create({
         email,
         password: encPassword,
@@ -91,19 +84,29 @@ exports.signup = async (req, res) => {
         userType,
         profilePic,
       });
-  
-      res.render("login");
-    } 
+
+      req.flash('success', `Successfully created account`);
+      res.redirect("/login");
+    }
     catch (error) {
       console.error("Error creating user:", error);
-      req.flash('failure',`Error creating user`);
-      return res.res.render("signup",{message:message});
+      req.flash('failure', `Error creating user`);
+      return res.redirect("/signup");
     }
   }
 };
 
 // Logic for logging in, using user credentials and according to the type of the user
 exports.login = async (req, res) => {
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    req.session.validationErrors = result.mapped();
+    req.session.fData = req.body;
+    res.redirect("/login");
+    return;
+  }
+
   try {
     const { email, password } = req.body;
     console.log(password);
@@ -121,10 +124,10 @@ exports.login = async (req, res) => {
         console.log(token)
         res.cookie("token", token);
 
-        req.flash('success',`Successfully Logged In by ${foundUser.name}`);
+        req.flash('success', `Successfully Logged In by ${foundUser.name}`);
         // Login the user according to the type of the user
         if (foundUser.userType === "Organization") {
-          return res.redirect("/organizationHome");
+          return res.redirect("/createProgram");
         } else if (foundUser.userType === "Member") {
           return res.redirect("/memberHome");
         } else if (foundUser.userType === "Admin") {
@@ -134,16 +137,28 @@ exports.login = async (req, res) => {
           return res.redirect("/");
         }
       }
+      else {
+        req.flash('failure', `Your password is incorrect`);
+        res.redirect("/login");
+        return;
+      }
+    }
+    else {
+      req.flash('failure', `Your email is not registered`);
+      res.redirect("/login");
+      return;
     }
 
   } catch (error) {
     console.error("Error during login:", error);
     // Error message
-    res.status(500).json({ error: "Internal server error" });
+    res.redirect("/login");
+    return;
   }
 };
 
-exports.logout= async(req, res)=>{
+exports.logout = async (req, res) => {
+  req.flash('success', `You have successfully been Logged Out`);
   res.clearCookie("token")
   res.redirect("/login")
 }
@@ -156,7 +171,7 @@ exports.renderForgotPassword = (req, res) => {
 
 exports.verifyEmail = async (req, res) => {
   const { email } = req.body;
-  
+
   const foundUser = await db.user.findOne({
     where: {
       email: email,
@@ -176,7 +191,7 @@ exports.verifyEmail = async (req, res) => {
     const OTP = Math.floor(100000 + Math.random() * 900000);
     const message = "Your OTP is: " + OTP + ".";
 
-    const options={
+    const options = {
       to: email,
       text: message,
       subject: "Reset password",
@@ -205,18 +220,18 @@ exports.renderOTPSend = (req, res) => {
 
 exports.verifyOTP = async (req, res) => {
   const { otp } = req.body;
-  const email= req.session.userEmail;
+  const email = req.session.userEmail;
   console.log(email);
   const foundUser = await db.user.findOne({
     where: {
-      email:email,
+      email: email,
     },
   });
 
-  if (foundUser!=null &&foundUser.otp==otp) {
+  if (foundUser != null && foundUser.otp == otp) {
     res.redirect("/resetPassword");
   }
-  else{
+  else {
     res.redirect("/OTPVerify")
   }
 };
@@ -226,25 +241,25 @@ exports.renderEnterNewPassword = (req, res) => {
   res.render("EnterNewPassword");
 };
 
-exports.resetPassword= async (req,res)=>{
-  const {newPassword,confirmNewPassword}=req.body
-  const email= req.session.userEmail;
+exports.resetPassword = async (req, res) => {
+  const { newPassword, confirmNewPassword } = req.body
+  const email = req.session.userEmail;
 
-  if (newPassword!=confirmNewPassword){
+  if (newPassword != confirmNewPassword) {
     res.redirect("/resetPassword")
   }
-  else{
-    const foundUser= await db.user.findOne({
-      where:{
-        email:email
+  else {
+    const foundUser = await db.user.findOne({
+      where: {
+        email: email
       }
     })
-      const encPassword=bcrypt.hashSync(newPassword,10)
-      console.log(encPassword);
-      foundUser.password = encPassword;
-      foundUser.otp = null;
-      foundUser.save();
-      delete req.session.userEmail;
-      res.redirect('/login')
+    const encPassword = bcrypt.hashSync(newPassword, 10)
+    console.log(encPassword);
+    foundUser.password = encPassword;
+    foundUser.otp = null;
+    foundUser.save();
+    delete req.session.userEmail;
+    res.redirect('/login')
   }
 }

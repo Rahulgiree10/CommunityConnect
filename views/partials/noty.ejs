@@ -5,7 +5,7 @@
                 type: 'success',
                 theme: 'sunset',
                 text: '<%=message.success%>',
-                timeout: 4000,
+                timeout: 3000,
                 
             }).show();
         </script>
@@ -15,8 +15,18 @@
             new Noty({
                 type: 'error',
                 theme: 'sunset',
-                text: '<%=message.success%>',
-                timeout: 4000,
+                text: '<%=message.failure%>',
+                timeout: 3000,
+            }).show();
+        </script>
+    <% }%>
+    <% if (message.warning) { %>
+        <script>
+            new Noty({
+                type: 'info',
+                theme: 'sunset',
+                text: '<%=message.warning%>',
+                timeout: 3000,
             }).show();
         </script>
     <% }%>

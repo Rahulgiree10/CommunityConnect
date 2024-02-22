@@ -3,127 +3,101 @@
     src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
 }
 
-body {
-    margin: 0;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Arial, sans-serif;
-    display: flex;
-    min-height: 100vh;
 }
 
-.sidebar {
-    width: 200px;
-    background-color: gray;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
+:root {
+    --main-color: #0be3ee;
 }
 
-.logo {
-    max-width: 50%;
-    height: auto;
-    margin-bottom: 20px;
+.theme-text {
+    color: var(--main-color);
 }
 
-.profile
+.navbar
 {
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-}
-
-.button {
-    display: inline-block;
-    padding: 12px 24px;
-    margin: 5px 10px;
-    background-color: burlywood;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-size: 13px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.button:hover {
-    background-color: #b99a76;
-    transform: translateY(-2px);
-}
-
-.button:active {
-    background-color: #464A4B;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
-
-.content {
-    flex: 1;
-    background-color: #E5E5E5;
-    color: darkgoldenrod;
-    padding: 20px;
-    margin-left: 220px;
-    text-align: center;
-    position: relative;
-    flex: 1;
-    background-color: white; 
-}
-
-.profile-section {
-    background-color: lightyellow;
-    border-radius: 10%;
-    margin-left: 400px;
-    margin-right: 400px;
-    height: 93%;
-    margin-bottom: 20px;
-}
-
-.profile-picture {
-    max-width: 40%;
-    /* Adjust the maximum width as needed */
-    height: 320px;
-    margin-top: 20px;
-    border-radius: 50%;
-    /* Make the image round */
-    overflow: hidden;
-    /* Ensure the image stays within the rounded border */
-}
-
-.profile-button {
-    background-color: transparent;
-    border: 2px solid black;
-    color: darkgoldenrod;
-    /* Set text color to match the border color */
-    padding: 10px 20px;
-    /* Adjust padding as needed */
-    font-size: 16px;
-    /* Adjust font size as needed */
-    cursor: pointer;
-    border-radius: 8px;
-    /* Optional: Add border-radius for rounded corners */
-}
-
-.profile-button:hover {
-    background-color: burlywood;
-    color: #333;
-    /* Set text color on hover */
-}
-
-.profile-button:active {
-    background-color: #ccc;
-    /* Set background color when button is pressed */
-    border-color: #ccc;
-    /* Set border color when button is pressed */
-}
-
-.content footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
+
+.nav-link
+{
+    color: black;
+}
+
+.navbar-brand {
+    color: var(--main-color) !important;
+}
+
+.nav-item img
+{
+    height: 20px;
+    width: 20px;
+}
+
+.navbar-brand img
+{
+    height: 40px;
+    width: 40px;
+}
+
+.act {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.navbar ul li a:hover {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.header {
+
+    position: relative;
+}
+
+.card img {
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.card .tick
+{
+    height: 30px;
+    width: 30px;
+    margin-top: -9px;
+}
+
+.main-card
+{
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    padding: 1.5em .5em .5em;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.card .card-title{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.card .btn:hover {
+  background-color: rgb(70, 145, 210);
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+} 
+

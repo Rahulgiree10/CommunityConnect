@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+:root {
+    --main-color: #0be3ee;
+}
+
+.theme-text {
+    color: var(--main-color);
+}
+
+.navbar-brand {
+    color: var(--main-color) !important;
+}
+
+.act {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.navbar ul li a:hover {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url(/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.middle {
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.middle-content {
+    background: lightgrey;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 15px 20px;
+}
+
+.middle h1 {
+    font-size: 50px;
+}
+
+.logo-image {
+    max-width: 200px;
+    /* Set maximum width for the image */
+}
+
+
+@media(max-width: 768px) {
+    .middle 
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .middle h1 
+    {
+        font-size: 34px;
+        padding: 10px;
+        text-align: center;
+        margin-right: 50px;
+    }
+
+    .middle-content
+    {
+        font-size: 14px;
+    }
+    
+    .navbar-brand
+    {
+        font-size: smaller;
+    }
+}
+
+@media(max-width: 388px) 
+{
+    .middle 
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .middle h1 
+    {
+        font-size: 20px;
+        padding: 5px;
+        text-align: center;
+        margin-right: 50px;
+    }
+
+    .middle-content
+    {
+        font-size: 10px;
+    }
+
+    .navbar-brand
+    {
+        font-size: small;
+    }
+}

@@ -1,11 +1,6 @@
 const db = require("../model/community");
 const userModel = require("../model/userModel");
-
-exports.renderOrganizationHome = async (req, res) => {
-    const user = req.user;
-    const message = req.flash();
-    res.render("organizationHome", { user: user, message:message });
-}
+const { validationResult } = require("express-validator");
 
 exports.renderProfile = async (req, res) => {
     const user = req.user;
@@ -13,18 +8,39 @@ exports.renderProfile = async (req, res) => {
 }
 
 exports.renderVerifyOrganization = async (req, res) => {
+    const validationErrors = req.session.validationErrors || [];
+    const fData = req.session.fData || {};
+    const message = req.flash();
+
+    delete req.session.validationErrors;
+    delete req.session.fData;
     const user = req.user;
-    res.render("verifyOrganization", { user: user });
+
+    res.render("verifyOrganization", 
+    { 
+        user: user,
+        validationErrors:validationErrors,
+        fData:fData,
+        message:message
+    });
 }
 
 exports.enterPANDetails = async (req, res) => {
-    const user = req.user;
+    const result = validationResult(req);
+
+    if (!result.isEmpty()) {
+        req.session.validationErrors = result.mapped();
+        req.session.fData = req.body;
+        res.redirect("/VerifyPAN");
+        return;
+    }
+
     try {
         const { PANNumber, PANName } = req.body;
 
         if (!req.file) {
-            // Handle case where no file is uploaded
-            return res.status(400).json({ error: "No file uploaded" });
+            req.flash('failure',`PAN Photo is not uploaded`);
+            return res.redirect('/VerifyPAN');
         }
 
         const PANPic = req.file.filename;
@@ -34,8 +50,8 @@ exports.enterPANDetails = async (req, res) => {
         // Check if PAN details already exist for the user
         const existingPAN = await db.PAN.findOne({ where: { userId: userId } });
         if (existingPAN) {
-            // PAN details already exist for the user
-            res.render("verifyOrganization", { user: user });
+            req.flash('failure',`Organization is already verified`);
+            res.redirect('/VerifyPAN');
             return; // Return here to prevent further execution
         }
 
@@ -48,18 +64,21 @@ exports.enterPANDetails = async (req, res) => {
             userId: userId,
         });
 
-        res.redirect("/organizationHome");
+        req.flash('success',`PAN Details is successfully submitted`);
+        res.redirect("/createProgram");
     }
     catch (error) {
         console.error("Error inserting PAN details:", error);
         // error message
-        res.status(500).json({ error: "Internal server error" });
+        res.redirect('/VerifyPAN');
+        return;
     }
 }
 
 exports.renderCreateProgram = async (req, res) => {
     const user = req.user;
-    res.render("CreateProgram", { user: user });
+    const message = req.flash();
+    res.render("CreateProgram", { user: user, message:message});
 }
 
 exports.createProgram = async (req, res) => {
@@ -68,6 +87,8 @@ exports.createProgram = async (req, res) => {
     try {
         // Check if the user's verification status is 'VERIFIED'
         if (user.verification !== 'VERIFIED') {
+            req.flash('failure',`Organization is not verified`);
+            req.flash('warning',`Organization must be verified first`);
             res.redirect('/createProgram');
             return;
         }
@@ -83,13 +104,14 @@ exports.createProgram = async (req, res) => {
             userId: userId,
         });
 
+        req.flash('success',`Program created successfully`);
         // res.status(200).json({ profilePic: profilePic });
-        res.render("organizationHome", { user: user });
+        res.redirect("/createProgram");
     }
     catch (error) {
-        console.error("Error creating user:", error);
-        // error message
-        res.status(500).json({ error: "Internal server error" });
+        console.error("Error creating program:", error);
+        req.flash('failure',`Error creating program`);
+        return res.redirect('/createProgram');
     }
 }
 
@@ -137,7 +159,7 @@ exports.updateProgram = async (req, res) => {
     };
 
 
-    await db.program.update(updatedData, { 
+    await db.program.update(updatedData, {
         where: {
             id: req.params.programId,
         },

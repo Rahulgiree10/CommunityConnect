@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/createProgram.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <title>Created Programs</title>
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/organizationHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
+        <a href="/profile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>" alt="profilePicture"></a><br><br>
+        <a href="/createProgram"><button class="button">Create A Program</button></a><br><br>
+        <a href="/createdPrograms"><button class="button">Created Programs</button></a><br><br>
+        <button class="button">Link Khalti Account</button>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="program-section">
+            <div class="program-name">
+                <!-- program Name Box -->
+                <div class="name-box">
+                    <table>
+                        <tr>
+                            <th>Program Title</th>
+                            <th>Program Time</th>
+                            <th>Program Date</th>
+                            <th>Program Location</th>
+                            <th>Program Description</th>
+                            <th>Action</th>
+                        </tr>
+                        <% program.forEach(program=> { %>
+                            <%if (user.verification === 'VERIFIED'){%>
+                            <% if (program.userId===user.id) { %>
+                                <!-- Assuming user.id is the ID of the logged-in user -->
+                                <tr>
+                                    <td>
+                                        <%= program.programTitle %>
+                                    </td>
+                                    <td>
+                                        <%= program.programTime %>
+                                    </td>
+                                    <td>
+                                        <%= program.programDate %>
+                                    </td>
+                                    <td>
+                                        <%= program.programLocation %>
+                                    </td>
+                                    <td>
+                                        <%= program.programDescription %>
+                                    </td>
+                                    <td>
+                                        <form action="/deleteProgram/<%= program.id %>" method="POST">
+                                            <button type="submit" class="delete">Delete</button>
+                                        </form>
+                                        <form action="/edit/<%=program.id %>" method="post">
+                                            <button type="submit" class="edit">Edit</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                <% } %>
+                                    <% }) %>
+
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer-content">
+                    <p>&copy; 2024 Community Connect. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+
+</body>
+
+</html>

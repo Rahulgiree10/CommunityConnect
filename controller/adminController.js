@@ -2,13 +2,15 @@ const db = require("../model/community");
 
 exports.renderAdminHome = async (req, res) => {
     const user = req.user;
-    res.render("adminHome", { user: user });
+    const message = req.flash();
+    res.render("adminHome", { user: user, message:message });
 }
 
 exports.renderAdminViewPAN = async (req, res) => {
     const user = await db.user.findAll({
         where: {
-            userType: 'Organization'
+            userType: 'Organization',
+            verification: 'NOT VERIFIED' 
         },
         include: {
             model: db.PAN,
@@ -47,6 +49,7 @@ exports.updateVerification = async (req, res) => {
 
         // Update the verification status
         await user.update({ verification: 'VERIFIED' });
+        req.flash('success', `${user.name} Successfully Verified`);
 
         res.redirect('/AdminHome'); // Redirect to home page or any other appropriate page
     } 

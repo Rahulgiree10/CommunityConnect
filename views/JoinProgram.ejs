@@ -14,7 +14,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="/memberHome"><img class="logo" src="/images/logob.png" alt="Logo"></a>
+        <a href="/memberHome"><img class="logo" src="/images/logow.png" alt="Logo"></a>
         <a href="/memberProfile"><img class="profile" src="http://localhost:4000/<%= user.profilePic %>"
                 alt="profilePicture"></a><br><br>
         <a href="/joinProgram"><button class="button">Join Program</button></a><br><br>
@@ -24,8 +24,9 @@
     <!-- Content -->
     <div class="content">
         <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Search...">
             <form action="/searchProgram" method="POST">
+                <input type="text" name="programName" class="search-bar" placeholder="Search by Program Name">
+                <input type="text" name="programLocation" class="search-bar" placeholder="Search by Program Location">
                 <button type="submit" class="button">Search</button>
             </form>
         </div>
@@ -44,28 +45,31 @@
                             <th>Action</th>
                         </tr>
                         <% program.forEach(program=> { %>
-                            <tr>
-                                <td>
-                                    <%= program.programTitle %>
-                                </td>
-                                <td>
-                                    <%= program.programTime %>
-                                </td>
-                                <td>
-                                    <%= program.programDate %>
-                                </td>
-                                <td>
-                                    <%= program.programLocation %>
-                                </td>
-                                <td>
-                                    <%= program.programDescription %>
-                                </td>
-                                <td>
-                                    <form action="" method="POST">
-                                        <button type="submit" class="join">Join</button>
-                                    </form>
-                                </td>
-                            </tr>
+                            <form action="/join-program" method="POST">
+                                <!-- Hidden input field to store the program ID -->
+                                <input type="hidden" name="programId" value="<%= program.id %>">
+                                <tr>
+                                    <td>
+                                        <%= program.programTitle %>
+                                    </td>
+                                    <td>
+                                        <%= program.programTime %>
+                                    </td>
+                                    <td>
+                                        <%= program.programDate %>
+                                    </td>
+                                    <td>
+                                        <%= program.programLocation %>
+                                    </td>
+                                    <td>
+                                        <%= program.programDescription %>
+                                    </td>
+                                    <td>
+                                        <!-- Submit button -->
+                                        <button type="button" class="join">Join</button>
+                                    </td>
+                                </tr>
+                            </form>
                             <% }) %>
 
                     </table>

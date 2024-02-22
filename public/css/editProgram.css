@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+:root {
+    --main-color: #0be3ee;
+}
+
+.theme-text {
+    color: var(--main-color);
+}
+
+.navbar
+{
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-link
+{
+    color: black;
+}
+
+.navbar-brand {
+    color: var(--main-color) !important;
+}
+
+.nav-item img
+{
+    height: 20px;
+    width: 20px;
+}
+
+.navbar-brand img
+{
+    height: 40px;
+    width: 40px;
+}
+
+.act {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.navbar ul li a:hover {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.information
+{
+    text-align: center;
+    padding: 10px;
+}
+
+.header {
+
+    position: relative;
+}
+
+.container
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Card css */
+
+body {
+    font-size: 16px;
+    color: #ffffff;
+    text-rendering: optimizeLegibility;
+}
+
+
+.light {
+    background: #f3f5f7;
+}
+
+.mainCreate
+{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.createProgram
+{
+    background-color: antiquewhite;
+    padding: 40px;
+    border-radius: 20px;
+}

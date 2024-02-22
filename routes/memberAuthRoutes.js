@@ -8,4 +8,6 @@ router.route('/memberProfile').get(authenticateUser.isAuthenticated,memberContro
 
 router.route('/joinProgram').get(authenticateUser.isAuthenticated,memberController.renderjoinProgram);
 
+router.post('/searchProgram', authenticateUser.isAuthenticated, memberController.searchProgram);
+
 module.exports = router;

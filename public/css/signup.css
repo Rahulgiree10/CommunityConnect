@@ -3,165 +3,208 @@
     src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
 }
 
-body {
-    background-image: url('/images/socialwork.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
+* 
+{
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.logo-section {
+.wrapper
+{
+    background: #ececec;
+    padding: 0 20px 0 20px;
+}
+
+.main
+{
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.logo-section img {
-    width: 200px;
-    height: 200px;
+.row
+{
+    width: 900px;
+    padding: 10px;
+    border-radius: #fff;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
-.signup-container {
-    padding: 20px;
+.side-image
+{
+    background-image: url(/images/logob.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px 0 0 10px;
+}
+
+img{
+    width: 35px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+i
+{
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.right
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.input-box
+{
+    width: 330px;
+    box-sizing: border-box;
+}
+
+.input-box header
+{
+    font-weight: 700;
     text-align: center;
-    margin: 30px auto;
-    width: 300px;
+    margin-bottom: 45px;
 }
 
-.input-container {
+.input-field
+{
+    display: flex;
+    flex-direction: column;
     position: relative;
-    margin-bottom: 20px;
+    padding: 0 10px 0 10px;
 }
 
-.input-container i {
+.select-field 
+{
+    margin-bottom: 20px; /* Add margin below the select field */
+}
+
+.select-field select
+{
+    border: none;
+    background: #ececec;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+
+.input {
+    height: 45px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+
+.input-box .input-field label {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 15px;
-    color: #999;
+    top: 10px;
+    pointer-events: none;
+    transition: .5s;
 }
 
-.input-container input[type="email"],
-.input-container input[type="password"],
-.input-container input[type="text"] {
-    width: calc(100% - 40px);
-    padding: 15px 20px;
-    padding-left: 40px;
+.input-field .input:focus~label,
+.input-field .input:not(:placeholder-shown)~label {
+    top: -10px;
+    font-size: 13px;
+}
+
+.input-field .input:focus,
+.input-field .input:not(:placeholder-shown) {
+    border-bottom: 1px solid #743ae1;
+}
+
+.submit
+{
     border: none;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    font-size: 16px;
-    color: #333;
     outline: none;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.input-container input:focus {
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.select-container {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.select-container select {
-    width: calc(100% - 40px);
-    padding: 15px 20px;
-    padding-left: 40px;
-    border: none;
+    height: 45px;
+    background: #ececec;
     border-radius: 5px;
-    background-color: #f5f5f5;
-    font-size: 16px;
-    color: #333;
-    outline: none;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: .4s;
 }
 
-.select-container::before {
-    content: "\f107"; /* Unicode for down arrow */
-    font-family: FontAwesome; /* Use font awesome for arrow */
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    color: #999;
-    pointer-events: none; /* Make sure arrow doesn't interfere with select interaction */
-}
-
-.select-container select:focus {
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.image-section {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.image-section input[type="file"] {
-    width: calc(100% - 40px);
-    padding: 15px 20px;
-    padding-left: 40px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    font-size: 16px;
-    color: #333;
-    outline: none;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-
-.image-section input:focus {
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.login-btn,
-.signup-btn{
-    display: inline-block;
-    padding: 12px 24px;
-    margin: 5px 10px;
-    background-color: burlywood;
+.submit:hover
+{
+    background: rgba(37, 95, 156, 0.9);
     color: #fff;
-    border: none;
-    border-radius: 25px;
+}
+
+.signin
+{
+    text-align: center;
+    font-size: small;
+    margin-top: 25px;
+}
+
+.signin a
+{
     text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.login-btn a,
-.signup-btn a{
+.span a
+{
     text-decoration: none;
-    /* Remove underline from anchor tags */
-    color: inherit;
-    /* Inherit text color from the parent button */
+    font-weight: 700;
+    color: #000;
+    transition: .5s;
 }
 
-.login-btn:hover,
-.signup-btn:hover {
-    background-color: #b99a76;
-    transform: translateY(-2px);
+.span align-self:hover
+{
+    text-decoration: underline;
+    color: #000;
 }
 
-
-.p1 {
-    color: black;
+.error-message
+{
+    color: red;
+    font-size: 10px;
+    padding: 5px;
 }
 
-.error-message {
-    color: black; /* Change the color to whatever you prefer */
-    font-size: 14px; /* Adjust font size as needed */
-    margin-bottom: 5px; /* Adjust spacing as needed */
-    background-color: white;
+@media only screen and (max-width: 768px) 
+{
+    .side-image
+    {
+        border-radius: 10px 10px 0 0;
+    }
+    
+    img
+    {
+       width: 35px;
+       position: absolute;
+       top: 20px;
+       left: 47%; 
+    }
+
+    .text
+    {
+        position: absolute;
+        top: 70%;
+        text-align: center;
+    }
+
+    .text p,i
+    {
+        font-size: 17px;
+    }
+    
+    .row
+    {
+        max-width: 420px;
+        width: 100%;
+    }
 }

@@ -3,158 +3,93 @@
     src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
 }
 
-body {
-    background-image: url('/images/socialwork.jpg');
-    background-size: cover; /* Cover the entire viewport */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-
-/* Nav bar */
-.navbar {
-    background-color: transparent;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
+:root {
+    --main-color: #0be3ee;
 }
 
-.nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.theme-text {
+    color: var(--main-color);
 }
 
-.nav-list li {
-    display: inline-block;
+.navbar-brand {
+    color: var(--main-color) !important;
 }
 
-.nav-list li a {
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: burlywood; /* Set the background color for the buttons */
-    border-radius: 5px; /* Optional: add rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+.act {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
 }
 
-.nav-list li a:hover {
-    background-color: #b99a76; /* Change background color on hover */
-}
-/* Nav bar */
-
-/* Logo */
-.logo-section {
-    justify-content: center;
-    margin-top: 160px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 20px;
+.navbar ul li a:hover {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
 }
 
-.logo-section img {
+.header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url(/images/background.jpg);
     width: 100%;
-    max-width: 300px;
-    height: auto;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
 
-.logo-section p
-{
-    color: darkgoldenrod; /* Change the text color */
-    font-size: 25px;
-    background-color: lightyellow; /* Highlight the text */
-    padding: 5px; /* Add some padding to make the highlight more visible */
-    font-weight: bold;
+.middle {
+    height: 80vh;
+    width: 80%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.middle h1 {
     font-size: 50px;
 }
 
-/* Brand section */
-.name {
-    margin-top: 20px;
-    font-size: 24px;
-    color: darkgoldenrod; /* Change the text color */
-    font-size: 25px;
+.logo-image {
+    max-width: 200px;
+    /* Set maximum width for the image */
 }
 
-.info {
-    margin-top: 90px;
-    text-align: center;    
-    color: white;
+.btn button 
+{
+    margin-right: 20px; /* Adjust the value to change the gap */
 }
 
-.info p {
-    color: darkgoldenrod; /* Change the text color */
-    font-size: 25px;
-    background-color: lightyellow; /* Highlight the text */
-    padding: 5px; /* Add some padding to make the highlight more visible */
-}
-
-
-.button-section {
-    text-align: center; /* Center align the buttons */
-}
-
-.login-btn,
-.signup-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    margin: 0 10px;
-    background-color: burlywood;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.login-btn a,
-.signup-btn a {
-    text-decoration: none; /* Remove underline from anchor tags */
-    color: inherit; /* Inherit text color from the parent button */
-}
-
-.login-btn:hover,
-.signup-btn:hover {
-    background-color: #b99a76;
-    transform: translateY(-2px);
-}
-
-
-@media screen and (max-width: 768px) {
-
-    /* Adjustments for smaller screens */
-    .navbar {
+@media(max-width: 768px) {
+    .middle 
+    {
+        display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
-    .nav-list li {
-        display: block;
-        margin: 10px 0;
+    .middle img 
+    {
+        margin-top: 0;
+        max-width: 40%;
+        max-height: 40%;
     }
 
-    .button-section {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
+    .middle h1 
+    {
+        font-size: 24px;
+        /* Decrease font size for small screens */
+        padding: 10px;
+        text-align: center;
     }
 
-    .logo-section {
-        flex-direction: column;
-        margin: 10px;
-    }
-
-    .logo-section img {
-        margin-top: 10px;
+    .btn-lg 
+    {
+        font-size: 14px; /* Adjust the font size as needed */
     }
 }
