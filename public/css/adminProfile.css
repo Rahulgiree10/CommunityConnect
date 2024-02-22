@@ -141,3 +141,45 @@ a.sidebar-link:hover {
     transform: rotate(45deg);
     transition: all .2s ease-out;
 }
+
+.card img {
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.card .tick
+{
+    height: 30px;
+    width: 30px;
+    margin-top: -9px;
+}
+
+.main-card {
+    height: 100vh;
+    display: flex;
+    align-items: center; 
+    margin-left: 30%;
+}
+
+
+.card{
+    padding: 1.5em .5em .5em;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.card .card-title{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.card .btn:hover {
+  background-color: rgb(70, 145, 210);
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+} 
+

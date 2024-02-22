@@ -2,6 +2,13 @@ const db = require("../model/community");
 const userModel = require("../model/userModel");
 const { validationResult } = require("express-validator");
 
+exports.renderOrganizationHome = async (req, res) => {
+    const user = req.user;
+    res.render("organizationHome", { user: user });
+    const message = req.flash();
+    res.render("organizationHome", { user: user, message:message });
+}
+
 exports.renderProfile = async (req, res) => {
     const user = req.user;
     res.render("OrganizationProfile", { user: user });

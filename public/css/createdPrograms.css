@@ -10,6 +10,11 @@
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
+::-webkit-scrollbar {
+    scroll-behavior: smooth;
+    display: none;
+  }
+
 :root {
     --main-color: #0be3ee;
 }
@@ -55,12 +60,6 @@
     border-bottom: 1px solid var(--main-color);
 }
 
-.information
-{
-    text-align: center;
-    padding: 10px;
-}
-
 .header {
 
     position: relative;
@@ -94,19 +93,7 @@
 /* Global Styles */
 body {
     font-size: 16px;
-    color: #ffffff;
     text-rendering: optimizeLegibility;
-}
-
-
-.light {
-    background: #f3f5f7;
-}
-
-.container-fluid img
-{
-    height: 30px;
-    width: 30px;
 }
 
 /* Cards */

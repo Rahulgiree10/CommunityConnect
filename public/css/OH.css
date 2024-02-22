@@ -10,11 +10,6 @@
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-::-webkit-scrollbar {
-    scroll-behavior: smooth;
-    display: none;
-  }
-
 :root {
     --main-color: #0be3ee;
 }
@@ -32,6 +27,12 @@
 .nav-link
 {
     color: black;
+}
+
+.container-fluid img
+{
+    height: 30px;
+    width: 30px;
 }
 
 .navbar-brand {
@@ -71,17 +72,15 @@
     position: relative;
 }
 
-.mainCreate
+.main-class
 {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.createProgram
-{
-    background-color: antiquewhite;
-    padding: 40px;
-    border-radius: 20px;
-}
+::-webkit-scrollbar {
+    scroll-behavior: smooth;
+    display: none;
+  }

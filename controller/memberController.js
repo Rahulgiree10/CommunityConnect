@@ -8,7 +8,7 @@ exports.renderMemberHome = async (req, res) => {
 
 exports.renderMemberProfile = async (req, res) => {
     const user = req.user;
-    res.render("MemberProfile",{user:user});
+    res.render("memberProfile",{user:user});
 }
 
 exports.renderjoinProgram = async (req, res) => {

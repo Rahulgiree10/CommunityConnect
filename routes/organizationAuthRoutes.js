@@ -5,6 +5,8 @@ const {PANPictureStorage,multer}=require('../services/multerService');
 const upload=multer({storage:PANPictureStorage});
 const PANDetailsValidator = require('../Validator/PANDetails');
 
+router.route('/organizationHome').get(authenticateUser.isAuthenticated,organizationController.renderOrganizationHome);
+
 router.route('/profile').get(authenticateUser.isAuthenticated,organizationController.renderProfile);
 
 router.route('/VerifyPAN').get(authenticateUser.isAuthenticated,organizationController.renderVerifyOrganization).post(authenticateUser.isAuthenticated, upload.single('PANPic'),PANDetailsValidator, organizationController.enterPANDetails);

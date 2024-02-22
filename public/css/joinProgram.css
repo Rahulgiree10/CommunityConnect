@@ -3,145 +3,358 @@
     src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
 }
 
-body {
-    margin: 0;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Arial, sans-serif;
-    display: flex;
-    min-height: 100vh;
 }
 
-.sidebar {
-    width: 200px;
-    background-color: gray;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
+::-webkit-scrollbar {
+    scroll-behavior: smooth;
+    display: none;
+  }
+
+:root {
+    --main-color: #0be3ee;
 }
 
-.logo {
-    max-width: 50%;
-    height: auto;
-    margin-bottom: 20px;
+.theme-text {
+    color: var(--main-color);
 }
 
-.profile
+.navbar
 {
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-}
-
-.button {
-    display: inline-block;
-    padding: 12px 24px;
-    margin: 5px 10px;
-    background-color: burlywood;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-size: 13px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.button:hover {
-    background-color: #b99a76;
-    transform: translateY(-2px);
-    background-color: #464A4B;
-}
-
-.button:active {
-    background-color: #464A4B;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
-
-.content {
-    flex: 1;
-    background-color: #E5E5E5;
-    color: darkgoldenrod;
-    padding: 20px;
-    margin-left: 220px;
-    text-align: center;
-    position: relative;
-    flex: 1;
-}
-
-.content footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 5px;
-}
-
-.search-container {
-    margin-top: 20px;
     display: flex;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-link
+{
+    color: black;
+}
+
+.navbar-brand {
+    color: var(--main-color) !important;
+}
+
+.container-fluid img
+{
+    height: 40px;
+    width: 40px;
+}
+
+.act {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.navbar ul li a:hover {
+    color: var(--main-color) !important;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.header {
+
+    position: relative;
+}
+
+.container
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item
+{
+    justify-content: center;
     align-items: center;
 }
 
-.search-bar {
-    flex: 1;
-    height: 30px;
-    padding: 5px;
-    border: 1px solid #ccc;
+/* Card css */
+
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+
+/* Variable Declarations */
+:root {
+    --main-green: #79dd09;
+    --main-green-rgb-015: rgba(121, 221, 9, 0.1);
+    --main-yellow: #bdbb49;
+    --main-yellow-rgb-015: rgba(189, 187, 73, 0.1);
+    --main-red: #bd150b;
+    --main-red-rgb-015: rgba(189, 21, 11, 0.1);
+    --main-blue: #0076bd;
+    --main-blue-rgb-015: rgba(0, 118, 189, 0.1);
+}
+
+/* Global Styles */
+body {
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+}
+
+/* Cards */
+.postcard {
+    flex-wrap: wrap;
+    display: flex;
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    color: #ffffff;
+    margin-bottom: 2rem; /* Adjust this value as needed */
+}
+
+.postcard.light {
+    background-color: #e1e5ea;
+}
+
+.t-dark {
+    color: #18151f;
+}
+
+.postcard a {
+    color: inherit;
+}
+
+.postcard h1,
+.postcard .h1 {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.postcard .small {
+    font-size: 80%;
+}
+
+.postcard__title {
+    font-size: 1.75rem;
+}
+
+.postcard__bar {
+    width: 50px;
+    height: 10px;
+    margin: 10px 0;
     border-radius: 5px;
-    background-color: white;
+    background-color: #424242;
+    transition: width 0.2s ease;
 }
 
-/* Table inside content section */
-.content .program-section table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
+.postcard__text {
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Table Header */
-.content .program-section th {
-    color: #333;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-    background-color: gray;
+.postcard__preview-txt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+    height: 100%;
 }
 
-/* Table Body */
-.content .program-section td {
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
-/* Hover effect */
-.content .program-section tr:hover {
-    background-color: #f5f5f5;
-}
-
-/* Buttons */
-.content .program-section button {
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+.postcard__tagbox {
+    display: flex;
+    flex-flow: row wrap;
     font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
+    margin: 20px 0 0 0;
+    padding: 0;
+    justify-content: center;
 }
 
-.content .program-section .join{
-    background-color: green;
+.postcard__tagbox .tag__item {
+    display: inline-block;
+    background: rgba(83, 83, 83, 0.4);
+    border-radius: 3px;
+    padding: 2.5px 10px;
+    margin: 0 5px 5px 0;
+    cursor: default;
+    user-select: none;
+    transition: background-color 0.3s;
 }
 
-.content .program-section .join:hover {
-    background-color: lightgreen;
+.postcard__tagbox .tag__item:hover {
+    background: rgba(83, 83, 83, 0.8);
 }
+
+.postcard:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(-70deg, #424242, transparent 50%);
+    opacity: 1;
+    border-radius: 10px;
+}
+
+.postcard:hover .postcard__bar {
+    width: 100px;
+}
+
+/* Media Queries */
+@media screen and (min-width: 769px) {
+    .postcard__title {
+        font-size: 2rem;
+    }
+
+    .postcard__tagbox {
+        justify-content: start;
+    }
+
+    .postcard__img {
+        max-width: 300px;
+        max-height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .postcard__text {
+        padding: 3rem;
+        width: 100%;
+    }
+
+    .postcard__text:before {
+        content: "";
+        position: absolute;
+        display: block;
+        background: #18151f;
+        top: -20%;
+        height: 130%;
+        width: 55px;
+    }
+
+    .postcard:hover .postcard__img {
+        transform: scale(1.1);
+    }
+
+    .postcard:nth-child(2n+1) {
+        flex-direction: row;
+    }
+
+    .postcard:nth-child(2n+0) {
+        flex-direction: row-reverse;
+    }
+
+    .postcard:nth-child(2n+1) .postcard__text::before {
+        left: -12px !important;
+        transform: rotate(4deg);
+    }
+
+    .postcard:nth-child(2n+0) .postcard__text::before {
+        right: -12px !important;
+        transform: rotate(-4deg);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .postcard__text {
+        padding: 2rem 3.5rem;
+    }
+
+    .postcard__text:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: -20%;
+        height: 130%;
+        width: 55px;
+    }
+
+    .postcard.dark .postcard__text:before {
+        background: #18151f;
+    }
+
+    .postcard.light .postcard__text:before {
+        background: #e1e5ea;
+    }
+}
+
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+    background: var(--main-green);
+    color: black;
+}
+
+.green .postcard__title:hover {
+    color: var(--main-green);
+}
+
+.green .postcard__bar {
+    background-color: var(--main-green);
+}
+
+.green:before {
+    background-image: linear-gradient(-30deg, var(--main-green-rgb-015), transparent 50%);
+}
+
+.green:nth-child(2n)::before {
+    background-image: linear-gradient(30deg, var(--main-green-rgb-015), transparent 50%);
+}
+
+.postcard .postcard__tagbox .blue.play:hover {
+    background: var(--main-blue);
+}
+
+.blue .postcard__title:hover {
+    color: var(--main-blue);
+}
+
+.blue .postcard__bar {
+    background-color: var(--main-blue);
+}
+
+.blue:before {
+    background-image: linear-gradient(-30deg, var(--main-blue-rgb-015), transparent 50%);
+}
+
+.blue:nth-child(2n)::before {
+    background-image: linear-gradient(30deg, var(--main-blue-rgb-015), transparent 50%);
+}
+
+.postcard .postcard__tagbox .red.play:hover {
+    background: var(--main-red);
+}
+
+.red .postcard__title:hover {
+    color: var(--main-red);
+}
+
+.red .postcard__bar {
+    background-color: var(--main-red);
+}
+
+.red:before {
+    background-image: linear-gradient(-30deg, var(--main-red-rgb-015), transparent 50%);
+}
+
+.red:nth-child(2n)::before {
+    background-image: linear-gradient(30deg, var(--main-red-rgb-015), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+    background: var(--main-yellow);
+    color: black;
+}
+
+.yellow .postcard__title:hover {
+    color: var(--main-yellow);
+}
+
+.yellow .postcard__bar {
+    background-color: var(--main-yellow);
+}
+
+.yellow:before {
+    background-image: linear-gradient(-30deg, var(--main-yellow-rgb-015), transparent 50%);
+}
+
+.yellow:nth-child(2n)::before {
+    background-image: linear-gradient(30deg, var(--main-yellow-rgb-015), transparent 50%);
+}
+/* Card css */

@@ -59,10 +59,11 @@
     /* Set maximum width for the image */
 }
 
-.btn button 
+button 
 {
     margin-right: 20px; /* Adjust the value to change the gap */
 }
+
 
 @media(max-width: 768px) {
     .middle 

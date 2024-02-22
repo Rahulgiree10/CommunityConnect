@@ -127,7 +127,7 @@ exports.login = async (req, res) => {
         req.flash('success', `Successfully Logged In by ${foundUser.name}`);
         // Login the user according to the type of the user
         if (foundUser.userType === "Organization") {
-          return res.redirect("/createProgram");
+          return res.redirect("/organizationHome");
         } else if (foundUser.userType === "Member") {
           return res.redirect("/memberHome");
         } else if (foundUser.userType === "Admin") {
