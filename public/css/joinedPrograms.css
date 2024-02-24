@@ -74,6 +74,17 @@
     align-items: center;
 }
 
+.btn
+{
+    margin-left: 55px;
+    margin-bottom: 5px;
+}
+
+.information h1
+{
+   text-align: center;
+}
+
 /* Card css */
 
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");

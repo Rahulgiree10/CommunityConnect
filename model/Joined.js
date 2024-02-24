@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 'JOINED',
         },
+        joinDate: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
     });
     
     return joined;

@@ -6,8 +6,10 @@ router.route('/memberHome').get(authenticateUser.isAuthenticated,memberControlle
 
 router.route('/memberProfile').get(authenticateUser.isAuthenticated,memberController.renderMemberProfile);
 
-router.route('/joinProgram').get(authenticateUser.isAuthenticated,memberController.renderjoinProgram);
+router.route('/joinProgram').get(authenticateUser.isAuthenticated,memberController.renderjoinProgram).post(authenticateUser.isAuthenticated,memberController.joinProgram);
 
-router.post('/searchProgram', authenticateUser.isAuthenticated, memberController.searchProgram);
+router.route('/searchProgram').post(authenticateUser.isAuthenticated, memberController.searchProgram);
+
+router.route('/joinedPrograms').get(authenticateUser.isAuthenticated, memberController.renderJoinedPrograms);
 
 module.exports = router;

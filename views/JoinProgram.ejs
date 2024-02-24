@@ -99,8 +99,10 @@
                                     <%= program.programLocation %>
                                 </h4>
                                 <div class="postcard__preview-txt"><%= program.programDescription %></div>
-                                <button type="submit" style="margin: 3px;" class="btn btn-primary col-3">Join</button>
-                              
+                                <form action="/joinProgram" method="POST" class="join-form">
+                                  <input type="hidden" name="programId" value="<%= program.id %>">
+                                  <button type="submit" style="margin: 3px;" class="btn btn-primary col-3 join-btn">Join</button>
+                              </form>                              
                             </div>
                         </article>
                     <% })%>

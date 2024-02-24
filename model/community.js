@@ -30,6 +30,7 @@ db.sequelize = sequelize;
 db.user = require("./userModel.js")(sequelize, DataTypes);
 db.PAN = require("./PANModel.js")(sequelize, DataTypes);
 db.program = require("./Program.js")(sequelize, DataTypes);
+db.joined = require("./Joined.js")(sequelize, DataTypes);
 
 //Relation between users and PAN
 db.user.hasOne(db.PAN);
@@ -38,6 +39,14 @@ db.PAN.belongsTo(db.user);
 //Relation between users and programs
 db.user.hasMany(db.program);
 db.program.belongsTo(db.user);
+
+//Relation between users and joinedprogram table
+db.user.hasMany(db.joined);
+db.joined.belongsTo(db.user);
+
+//Relation between programs and joinedprogram table
+db.program.hasMany(db.joined);
+db.joined.belongsTo(db.program);
 
 module.exports = db;
 
