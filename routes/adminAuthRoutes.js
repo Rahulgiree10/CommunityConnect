@@ -7,7 +7,9 @@ router.route('/adminHome').get(authenticateUser.isAuthenticated,adminController.
 
 router.route('/adminProfile').get(authenticateUser.isAuthenticated,adminController.renderadminProfile);
 
-router.route('/AdminViewPAN').get(authenticateUser.isAuthenticated,adminController.renderAdminViewPAN)
+router.route('/AdminViewPAN').get(authenticateUser.isAuthenticated,adminController.renderAdminViewPAN);
+
+router.route('/AdminViewVerifiedPAN').get(authenticateUser.isAuthenticated,adminController.renderAdminVerifiedPAN);
 
 router.route('/AdminVerifyPANEach/:id').get(adminController.renderEachAdminViewPAN);
 

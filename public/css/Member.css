@@ -56,23 +56,64 @@
     border-bottom: 1px solid var(--main-color);
 }
 
-.information
-{
-    text-align: center;
-    padding: 10px;
-}
-
 .header {
-
     position: relative;
 }
 
-.main-class
-{
+.information {
+    background-color: gainsboro; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center; /* Center align text */
+    margin: 10px;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a readable font */
+    font-size: 36px; /* Large font size */
+    color: #333; /* Dark text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    margin: 0; /* Remove default margin */
+}
+
+.main-class {
     height: 100vh;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 70px; /* Adjust this value to match the height of your footer */
+}
+
+.main-class figure {
+    margin: 0 10px;
+    width: 30%; /* Adjust the width as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.main-class blockquote {
+    font-style: italic;
+    color: #555;
+}
+
+.main-class figcaption {
+    text-align: right;
+    color: #777;
+}
+
+.quote-figure {
+    flex-basis: 25%; /* Set each quote to occupy 25% of the container width */
+    margin: 10px; /* Add some margin around each quote */
+}
+
+.footer-head {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
 }
 
 ::-webkit-scrollbar {

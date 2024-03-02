@@ -1,4 +1,5 @@
 const router = require ('express').Router();
+const { or } = require('sequelize');
 const organizationController = require ('../controller/organizationController');
 const authenticateUser=require('../middleware/authMiddleware');
 const {PANPictureStorage,multer}=require('../services/multerService');
@@ -7,7 +8,11 @@ const PANDetailsValidator = require('../Validator/PANDetails');
 
 router.route('/organizationHome').get(authenticateUser.isAuthenticated,organizationController.renderOrganizationHome);
 
+router.route('/createQuote').post(authenticateUser.isAuthenticated, organizationController.createQuote);
+
 router.route('/profile').get(authenticateUser.isAuthenticated,organizationController.renderProfile);
+
+router.route('/EditProfile').get(authenticateUser.isAuthenticated, organizationController.renderProfileEdit);
 
 router.route('/VerifyPAN').get(authenticateUser.isAuthenticated,organizationController.renderVerifyOrganization).post(authenticateUser.isAuthenticated, upload.single('PANPic'),PANDetailsValidator, organizationController.enterPANDetails);
 
@@ -20,5 +25,7 @@ router.route('/deleteProgram/:programId').post(authenticateUser.isAuthenticated,
 router.route("/edit/:programId").post(authenticateUser.isAuthenticated,organizationController.edit);
 
 router.route('/updateProgram/:programId').post(authenticateUser.isAuthenticated,organizationController.updateProgram);
+
+router.route('/updateProfile').post(upload.single('profilePic'), authenticateUser.isAuthenticated, organizationController.updateUser);
 
 module.exports = router;

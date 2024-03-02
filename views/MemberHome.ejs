@@ -64,22 +64,21 @@
             <!-- navbar ends here -->
 
             <div class="information">
-                <h1 style="color: black;">Member Home</h1>
+                <h1 style="color: black;">Home</h1>
             </div>
 
             <!-- Create program starts here -->
             <div class="main-class">
-              <figure>
-                <blockquote class="blockquote">
-                  <p>A well-known quote, contained in a blockquote element.</p>
-                </blockquote>
-                <figcaption class="blockquote-footer">
-                  Someone famous in <cite title="Source Title">Source Title</cite>
-                </figcaption>
-              </figure>
-              <div class="m-5 p-5">
-              <a href="/joinProgram"><button class="btn btn-primary">Join Program</button></a> 
-            </div>
+                <% quotes.forEach(function(quote, index) { %>
+                    <figure class="quote-figure">
+                        <blockquote class="blockquote">
+                            <p><%= quote.detail %></p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer">
+                            <%= quote.source %>
+                        </figcaption>
+                    </figure>
+                <% }); %>
             </div>
             <!-- Create program ends here -->
 
@@ -96,11 +95,8 @@
             </div>
             <!-- Copyright -->
         </footer>
-
     </div>
     <!-- Foooter -->
-
-    <%- include('./partials/noty') %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

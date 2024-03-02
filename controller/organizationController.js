@@ -5,14 +5,82 @@ const { validationResult } = require("express-validator");
 exports.renderOrganizationHome = async (req, res) => {
     const user = req.user;
     res.render("organizationHome", { user: user });
-    const message = req.flash();
-    res.render("organizationHome", { user: user, message:message });
 }
+
+// Assuming detail is part of the request body
+exports.createQuote = async (req, res) => {
+    const { detail, source } = req.body;
+
+    try {
+        const newQuote = await db.Quote.create({
+            detail,
+            source,
+        });
+
+        // Only send the redirect response if everything is successful
+        res.redirect("/organizationHome");
+    } catch (error) {
+        // Log the error for debugging purposes
+        console.error(error);
+
+        // Send an error response
+        res.status(500).send("Internal Server Error");
+    }
+};
+
+
 
 exports.renderProfile = async (req, res) => {
     const user = req.user;
     res.render("OrganizationProfile", { user: user });
 }
+
+exports.renderProfileEdit = async (req, res) =>{
+    const user = req.user;
+    res.render("ProfileEdit", {user:user});
+}
+
+// Controller function to update user's values
+exports.updateUser = async (req, res) => {
+    try {
+        // Assuming you are using a form with inputs like name, email, password
+        const { name, email, address } = req.body;
+        let profilePic;
+
+        // Check if a file was uploaded
+        if (req.file) {
+            profilePic = req.file.filename;
+        }
+
+        // Find the user by ID
+        const user = await db.user.findOne({ where: { id: req.user.id } });
+
+        if (!user) {
+            // Handle case where user is not found
+            return res.status(404).send("User not found");
+        }
+
+        // Update user's values
+        user.name = name;
+        user.email = email;
+        user.address = address;
+        if (profilePic) {
+            user.profilePic = profilePic;
+        }
+
+        // Save the updated user
+        await user.save();
+
+        // Redirect to a page or send a response indicating success
+        res.redirect('/profile');
+    } catch (err) {
+        console.error(err);
+        // Handle errors appropriately
+        res.status(500).send("Error updating user");
+    }
+};
+
+
 
 exports.renderVerifyOrganization = async (req, res) => {
     const validationErrors = req.session.validationErrors || [];
@@ -33,6 +101,7 @@ exports.renderVerifyOrganization = async (req, res) => {
 }
 
 exports.enterPANDetails = async (req, res) => {
+    const user = req.user;
     const result = validationResult(req);
 
     if (!result.isEmpty()) {
@@ -56,7 +125,7 @@ exports.enterPANDetails = async (req, res) => {
 
         // Check if PAN details already exist for the user
         const existingPAN = await db.PAN.findOne({ where: { userId: userId } });
-        if (existingPAN) {
+        if (existingPAN && user.verification == 'NOT VERIFIED') {
             req.flash('failure',`Organization is already verified`);
             res.redirect('/VerifyPAN');
             return; // Return here to prevent further execution

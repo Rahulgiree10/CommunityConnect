@@ -1,126 +1,20 @@
-@font-face {
-    font-family: 'Segoe UI';
-    src: local('Segoe UI'), url('../public/fonts/Segoe\ UI.ttf') format('woff2');
-}
-
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-::-webkit-scrollbar {
-    scroll-behavior: smooth;
-    display: none;
-  }
-
-:root {
-    --main-color: #0be3ee;
-}
-
-.theme-text {
-    color: var(--main-color);
-}
-
-.navbar
-{
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-}
-
-.nav-link
-{
-    color: black;
-}
-
-.navbar-brand {
-    color: var(--main-color) !important;
-}
-
-.nav-item img
-{
-    height: 20px;
-    width: 20px;
-}
-
-.navbar-brand img
-{
-    height: 40px;
-    width: 40px;
-}
-
-.act {
-    color: var(--main-color) !important;
-    border-bottom: 1px solid var(--main-color);
-}
-
-.navbar ul li a:hover {
-    color: var(--main-color) !important;
-    border-bottom: 1px solid var(--main-color);
-}
-
-.header {
-
-    position: relative;
-}
-
-.container
-{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.information {
-  background-color: gainsboro; /* Light gray background */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  text-align: center; /* Center align text */
-  margin: 10px;
-}
-
-h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-  font-size: 36px; 
-  color: #333; 
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
-  margin: 0; 
-}
-
-.footer-head {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  z-index: 1000;
-}
-
-/* Import Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
-
-/* Define custom properties */
-:root {
-  --main-green: #79dd09;
-  --main-green-rgb-015: rgba(121, 221, 9, 0.1);
-  --main-yellow: #bdbb49;
-  --main-yellow-rgb-015: rgba(189, 187, 73, 0.1);
-  --main-red: #bd150b;
-  --main-red-rgb-015: rgba(189, 21, 11, 0.1);
-  --main-blue: #0076bd;
-  --main-blue-rgb-015: rgba(0, 118, 189, 0.1);
-}
-
+$main-green: #79dd09 !default;
+$main-green-rgb-015: rgba(121, 221, 9, 0.1) !default;
+$main-yellow: #bdbb49 !default;
+$main-yellow-rgb-015: rgba(189, 187, 73, 0.1) !default;
+$main-red: #bd150b !default;
+$main-red-rgb-015: rgba(189, 21, 11, 0.1) !default;
+$main-blue: #0076bd !default;
+$main-blue-rgb-015: rgba(0, 118, 189, 0.1) !default;
 
 /* This pen */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+	font-family: "Baloo 2", cursive;
 	font-size: 16px;
 	color: #ffffff;
 	text-rendering: optimizeLegibility;
 	font-weight: initial;
-  margin-bottom: 80px;
 }
 
 .dark {
@@ -213,7 +107,7 @@ a, a:hover {
   }
 
   .postcard__preview-txt {
-    overflow: scroll;
+    overflow: hidden;
     text-overflow: ellipsis;
     text-align: justify;
     height: 100%;
@@ -241,6 +135,18 @@ a, a:hover {
         background: rgba(83, 83, 83, 0.8);
       }
     }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(-70deg, #424242, transparent 50%);
+    opacity: 1;
+    border-radius: 10px;
   }
 
   &:hover .postcard__bar {
@@ -333,79 +239,79 @@ a, a:hover {
 
 /* COLORS */
 .postcard .postcard__tagbox .green.play:hover {
-	background: var(--main-green);
+	background: $main-green;
 	color: black;
 }
 .green .postcard__title:hover {
-	color: var(--main-green);
+	color: $main-green;
 }
 .green .postcard__bar {
-	background-color: var(--main-green);
+	background-color: $main-green;
 }
 .green::before {
 	background-image: linear-gradient(
 		-30deg,
-		var(--main-green-rgb-015),
+		$main-green-rgb-015,
 		transparent 50%
 	);
 }
 .green:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, var(--main-green-rgb-015), transparent 50%);
+	background-image: linear-gradient(30deg, $main-green-rgb-015, transparent 50%);
 }
 
 .postcard .postcard__tagbox .blue.play:hover {
-	background: var(--main-blue);
+	background: $main-blue;
 }
 .blue .postcard__title:hover {
-	color: var(--main-blue);
+	color: $main-blue;
 }
 .blue .postcard__bar {
-	background-color: var(--main-blue);
+	background-color: $main-blue;
 }
 .blue::before {
-	background-image: linear-gradient(-30deg, var(--main-blue-rgb-015), transparent 50%);
+	background-image: linear-gradient(-30deg, $main-blue-rgb-015, transparent 50%);
 }
 .blue:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, var(--main-blue-rgb-015), transparent 50%);
+	background-image: linear-gradient(30deg, $main-blue-rgb-015, transparent 50%);
 }
 
 .postcard .postcard__tagbox .red.play:hover {
-	background: var(--main-red);
+	background: $main-red;
 }
 .red .postcard__title:hover {
-	color: var(--main-red);
+	color: $main-red;
 }
 .red .postcard__bar {
-	background-color: var(--main-red);
+	background-color: $main-red;
 }
 .red::before {
-	background-image: linear-gradient(-30deg, var(--main-red-rgb-015), transparent 50%);
+	background-image: linear-gradient(-30deg, $main-red-rgb-015, transparent 50%);
 }
 .red:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, var(--main-red-rgb-015), transparent 50%);
+	background-image: linear-gradient(30deg, $main-red-rgb-015, transparent 50%);
 }
 
 .postcard .postcard__tagbox .yellow.play:hover {
-	background: var(--main-yellow);
+	background: $main-yellow;
 	color: black;
 }
 .yellow .postcard__title:hover {
-	color: var(--main-yellow);
+	color: $main-yellow;
 }
 .yellow .postcard__bar {
-	background-color: var(--main-yellow);
+	background-color: $main-yellow;
 }
 .yellow::before {
 	background-image: linear-gradient(
 		-30deg,
-		var(--main-yellow-rgb-015),
+		$main-yellow-rgb-015,
 		transparent 50%
 	);
 }
 .yellow:nth-child(2n)::before {
 	background-image: linear-gradient(
 		30deg,
-		var(--main-yellow-rgb-015),
+		$main-yellow-rgb-015,
 		transparent 50%
 	);
 }
@@ -414,14 +320,14 @@ a, a:hover {
 	.green::before {
 		background-image: linear-gradient(
 			-80deg,
-			var(--main-green-rgb-015),
+			$main-green-rgb-015,
 			transparent 50%
 		);
 	}
 	.green:nth-child(2n)::before {
 		background-image: linear-gradient(
 			80deg,
-			var(--main-green-rgb-015),
+			$main-green-rgb-015,
 			transparent 50%
 		);
 	}
@@ -429,32 +335,32 @@ a, a:hover {
 	.blue::before {
 		background-image: linear-gradient(
 			-80deg,
-			var(--main-blue-rgb-015),
+			$main-blue-rgb-015,
 			transparent 50%
 		);
 	}
 	.blue:nth-child(2n)::before {
-		background-image: linear-gradient(80deg, var(--main-blue-rgb-015), transparent 50%);
+		background-image: linear-gradient(80deg, $main-blue-rgb-015, transparent 50%);
 	}
 
 	.red::before {
-		background-image: linear-gradient(-80deg, var(--main-red-rgb-015), transparent 50%);
+		background-image: linear-gradient(-80deg, $main-red-rgb-015, transparent 50%);
 	}
 	.red:nth-child(2n)::before {
-		background-image: linear-gradient(80deg, var(--main-red-rgb-015), transparent 50%);
+		background-image: linear-gradient(80deg, $main-red-rgb-015, transparent 50%);
 	}
 	
 	.yellow::before {
 		background-image: linear-gradient(
 			-80deg,
-			var(--main-yellow-rgb-015),
+			$main-yellow-rgb-015,
 			transparent 50%
 		);
 	}
 	.yellow:nth-child(2n)::before {
 		background-image: linear-gradient(
 			80deg,
-			var(--main-yellow-rgb-015),
+			$main-yellow-rgb-015,
 			transparent 50%
 		);
 	}

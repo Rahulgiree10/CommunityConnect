@@ -52,8 +52,7 @@
 
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="/profile">My Profile</a></li>
-                    <li><a class="dropdown-item" href="/logout"><button type="button"
-                          class="btn text-danger">Logout</button></a></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
                   </ul>
                 </div>
               </li>
@@ -80,7 +79,7 @@
                 </p>
                 <p class="card-text">Address: <%= user.address %>
                 </p>
-                <button type="button" class="btn btn-primary">Edit</button>
+                <a href="/EditProfile"><button type="button" class="btn btn-primary">Edit</button></a>
                 <a href="/VerifyPAN"><button type="button" class="btn btn-primary">Verify Organization</button></a>
               </div>
         </div>

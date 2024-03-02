@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull:true,
         },
         verification: {
-            type: DataTypes.ENUM('NOT VERIFIED', 'VERIFIED'),
+            type: DataTypes.ENUM('NOT VERIFIED', 'VERIFIED', 'PENDING'),
             allowNull: false,
             defaultValue: 'NOT VERIFIED'
         }

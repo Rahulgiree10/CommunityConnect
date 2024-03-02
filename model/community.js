@@ -31,6 +31,7 @@ db.user = require("./userModel.js")(sequelize, DataTypes);
 db.PAN = require("./PANModel.js")(sequelize, DataTypes);
 db.program = require("./Program.js")(sequelize, DataTypes);
 db.joined = require("./Joined.js")(sequelize, DataTypes);
+db.Quote = require("./Quote.js")(sequelize, DataTypes);
 
 //Relation between users and PAN
 db.user.hasOne(db.PAN);

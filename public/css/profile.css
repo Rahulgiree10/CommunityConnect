@@ -106,3 +106,9 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 } 
 
+.footer-head {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+  }

@@ -124,7 +124,6 @@ exports.login = async (req, res) => {
         console.log(token)
         res.cookie("token", token);
 
-        req.flash('success', `Successfully Logged In by ${foundUser.name}`);
         // Login the user according to the type of the user
         if (foundUser.userType === "Organization") {
           return res.redirect("/organizationHome");

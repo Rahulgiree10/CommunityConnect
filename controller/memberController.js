@@ -1,9 +1,12 @@
 const db = require("../model/community");
 
+
 exports.renderMemberHome = async (req, res) => {
     const user = req.user;
     const message = req.flash();
-    res.render("memberHome",{user:user,message:message});
+    const quotes = await db.Quote.findAll();
+
+    res.render("memberHome",{user:user,message:message, quotes:quotes});
 }
 
 exports.renderMemberProfile = async (req, res) => {
@@ -13,9 +16,10 @@ exports.renderMemberProfile = async (req, res) => {
 
 exports.renderjoinProgram = async (req, res) => {
     const user = req.user;
+    const message = req.flash();
     const program = await db.program.findAll();
 
-    res.render("joinProgram",{user:user, program:program});
+    res.render("joinProgram",{user:user, program:program, message:message});
 }
 
 // Controller function to handle program search
@@ -36,6 +40,7 @@ exports.searchProgram = async (req, res) => {
 
 // Controller function to handle program search
 exports.searchProgram = async (req, res) => {
+    const message = req.flash();
     try {
         const { programName } = req.body; // Extracting the program name from the request body
         const { programLocation } = req.body; // Extracting the program location from the request body
@@ -49,7 +54,7 @@ exports.searchProgram = async (req, res) => {
         });
         
         const user = req.user;
-        res.render("joinProgram", { user: user, program: programs });
+        res.render("joinProgram", { user: user, program: programs,message:message });
     } catch (error) {
         console.error('Error searching for programs:', error);
         return res.redirect('/joinProgram');
@@ -72,7 +77,7 @@ exports.joinProgram = async (req, res) => {
 
         if (existingMembership) {
             // If the user is already a member, redirect with a message indicating so
-            req.flash('error', 'You are already a member of this program.');
+            req.flash('warning', 'You are already a member of this program.');
             return res.redirect('/joinProgram');
         }
 
@@ -83,7 +88,8 @@ exports.joinProgram = async (req, res) => {
         });
 
         // Redirect to a success page or display a success message
-        return res.redirect('/joinProgram'); // Redirect to the dashboard or any other appropriate page
+        req.flash('success','You have successfully joined the program.');
+        return res.redirect('/joinedPrograms'); // Redirect to the dashboard or any other appropriate page
     } catch (error) {
         console.error('Error joining program:', error);
         return res.redirect('/joinProgram');
@@ -92,12 +98,12 @@ exports.joinProgram = async (req, res) => {
 
 // Controller function to render the page displaying joined programs
 exports.renderJoinedPrograms = async (req, res) => {
+    const message = req.flash();
+
     try {
-        // Get the ID of the current user
         const userId = req.user.id;
         const user = req.user;
 
-        // Query the database to fetch joined programs for the current user
         const joinedPrograms = await db.joined.findAll({
             where: { 
                 UserId: userId 
@@ -111,10 +117,10 @@ exports.renderJoinedPrograms = async (req, res) => {
 
         console.log(joinedPrograms);
 
-        // Render the view with the fetched joined programs
-        res.render("joinedProgram", { joinedPrograms , user:user});
+        
+        res.render("joinedProgram", { joinedPrograms , user:user, message:message});
     } catch (error) {
         console.error('Error fetching joined programs:', error);
-        return res.redirect('/joinedPrograms'); // Redirect to home page or handle error as needed
+        return res.redirect('/joinedPrograms'); 
     }
 };

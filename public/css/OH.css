@@ -10,6 +10,11 @@
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
+::-webkit-scrollbar {
+    scroll-behavior: smooth;
+    display: none;
+  }
+
 :root {
     --main-color: #0be3ee;
 }
@@ -27,12 +32,6 @@
 .nav-link
 {
     color: black;
-}
-
-.container-fluid img
-{
-    height: 30px;
-    width: 30px;
 }
 
 .navbar-brand {
@@ -74,13 +73,32 @@
 
 .main-class
 {
-    height: 100vh;
+    height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
 }
 
-::-webkit-scrollbar {
-    scroll-behavior: smooth;
-    display: none;
-  }
+.information {
+    background-color: gainsboro; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center; /* Center align text */
+    margin: 10px;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a readable font */
+    font-size: 36px; /* Large font size */
+    color: #333; /* Dark text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    margin: 0; /* Remove default margin */
+}
+
+.footer-head {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+}
