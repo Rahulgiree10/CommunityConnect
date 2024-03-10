@@ -1,11 +1,39 @@
 const db = require("../model/community");
+const sendEmail = require("../services/emailService");
+
 
 exports.renderAdminHome = async (req, res) => {
     const user = req.user;
-    const program = await await db.program.findAll();
-    const message = req.flash();
-    res.render("adminHome", { user: user, message: message });
-}
+    
+    try {
+        // Query to count the number of programs created on each date
+        const programCounts = await db.program.findAll({
+            attributes: [
+                [db.Sequelize.fn('date', db.Sequelize.col('createdAt')), 'date'], // Extract date from createdAt field
+                [db.Sequelize.fn('count', db.Sequelize.col('id')), 'count'] // Count number of programs
+            ],
+            group: [db.Sequelize.fn('date', db.Sequelize.col('createdAt'))],
+            limit: 7, 
+            raw: true // Get raw data
+        });
+
+        // Prepare data for chart
+        const categories = programCounts.map(program => program.date);
+        const seriesData = programCounts.map(program => program.count);
+
+        console.log(categories)
+        console.log(seriesData)
+
+        // Render admin home page with data
+        res.render("adminHome", { user: user, categories: categories, seriesData: seriesData });
+    } catch (error) {
+        console.error('Error fetching program data:', error);
+        const message = req.flash();
+        res.render("adminHome", { user: user, message: message });
+    }
+};
+
+
 
 exports.renderadminProfile = async (req, res) => {
     const user = req.user;
@@ -102,16 +130,18 @@ exports.removeVerification = async (req, res) => {
 
         const options = {
             to: user.email, // Using the email fetched from the database
-            text: 'Your details are suspicious, please verify your organization again.',
-            subject: "Reset password",
+            text: 'Your organization details are under review. Please verify your organization again.',
+            subject: 'Organization Verification Status Update'
         };
 
         // Sending the email
         await sendEmail(options);
 
+        req.flash('success', 'Verification status updated successfully');
         return res.redirect('/AdminViewVerifiedPAN');
     } catch (error) {
         console.error('Error updating user verification status or sending email:', error);
+        req.flash('error', 'An error occurred while updating verification status');
         return res.redirect('/AdminViewVerifiedPAN');
     }
 };

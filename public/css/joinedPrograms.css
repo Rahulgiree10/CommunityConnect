@@ -56,8 +56,8 @@
 }
 
 .header {
-
-    position: relative;
+  background-color: #F1F9EC;
+  position: relative;
 }
 
 .container
@@ -124,13 +124,8 @@ body {
   margin-bottom: 80px;
 }
 
-.dark {
-	background: #110f16;
-}
-
-
 .light {
-	background: #f3f5f7;
+  background-color: #F1F9EC;
 }
 
 a, a:hover {

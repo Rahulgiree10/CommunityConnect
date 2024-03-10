@@ -5,6 +5,8 @@ const authenticateUser=require('../middleware/authMiddleware');
 const {PANPictureStorage,multer}=require('../services/multerService');
 const upload=multer({storage:PANPictureStorage});
 const PANDetailsValidator = require('../Validator/PANDetails');
+const chatController = require ('../controller/chatController');
+
 
 router.route('/organizationHome').get(authenticateUser.isAuthenticated,organizationController.renderOrganizationHome);
 
@@ -27,5 +29,7 @@ router.route("/edit/:programId").post(authenticateUser.isAuthenticated,organizat
 router.route('/updateProgram/:programId').post(authenticateUser.isAuthenticated,organizationController.updateProgram);
 
 router.route('/updateProfile').post(upload.single('profilePic'), authenticateUser.isAuthenticated, organizationController.updateUser);
+
+router.route('/OrganizationChat').get(authenticateUser.isAuthenticated, chatController.renderOrganizationChat);
 
 module.exports = router;

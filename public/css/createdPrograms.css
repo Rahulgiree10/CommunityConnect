@@ -61,8 +61,8 @@
 }
 
 .header {
-
-    position: relative;
+  background-color: #F1F9EC;
+  position: relative;
 }
 
 .container
@@ -123,13 +123,9 @@ body {
   margin-bottom: 80px;
 }
 
-.dark {
-	background: #110f16;
-}
-
 
 .light {
-	background: #f3f5f7;
+  background-color: #F1F9EC;
 }
 
 a, a:hover {
@@ -148,7 +144,6 @@ a, a:hover {
 .postcard {
   flex-wrap: wrap;
   display: flex;
-  
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border-radius: 10px;
   margin: 0 0 2rem 0;

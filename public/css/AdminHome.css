@@ -147,4 +147,5 @@ a.sidebar-link:hover {
     justify-content: center;
     align-items: center;
     height: 400px; /* Adjust height as needed */
+    z-index: 1;
 }

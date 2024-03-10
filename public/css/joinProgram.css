@@ -59,8 +59,8 @@
 }
 
 .header {
-
-    position: relative;
+  background-color: #F1F9EC;
+  position: relative;
 }
 
 .container
@@ -128,13 +128,8 @@ body {
   padding-bottom: 60px;
 }
 
-.dark {
-	background: #110f16;
-}
-
-
 .light {
-	background: #f3f5f7;
+  background-color: #F1F9EC;
 }
 
 a, a:hover {

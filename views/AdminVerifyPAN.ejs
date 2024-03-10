@@ -49,9 +49,11 @@
 
                 <li class="sidebar-item">
                     <a href="/AdminViewVerifiedPAN" class="sidebar-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
-                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0"/>
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+                        </svg>
                         <span>Verified Organization</span>
                     </a>
                 </li>
@@ -77,30 +79,38 @@
 
         <!-- main starts here -->
         <div class="main p-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pending border border-black p-2 m-2">
-                        <div class="p-2 m-2" style="background-color: gray; text-align: center;">
-                            <h1 style="color: lightcoral;">Pending Requests</h1>
-                        </div>
-                        <div class="m-2 p-2 text-center">
-                            <% user.forEach(user=> { %>
-                                <% if (user.verification === 'NOT VERIFIED' || user.verification === 'PENDING') { %>
-                                    <div style="margin-bottom: 30px;">
-                                        <a href="/AdminVerifyPANEach/<%= user.id %>">
-                                            <div class="d-inline p-2 bg-dark text-white">
-                                                <%= user.name %>
+            <div class="container">
+                <% user.forEach(user=> { %>
+                    <% if (user.verification==='NOT VERIFIED' ) { %>
+                        <a href="/AdminVerifyPANEach/<%= user.id %>">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card mb-3 card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto card-img-container">
+                                                <img src="http://localhost:4000/<%= user.profilePic %>" class="width-90 rounded-3" alt="">
                                             </div>
-                                        </a>
+                                            <div class="col">
+                                                <div class="overflow-hidden flex-nowrap">
+                                                    <h6 class="mb-1">
+                                                        <%= user.name %>
+                                                        <% if (user.PAN.createdAt) { %>
+                                                            <p class="text-muted">PAN Submitted At: <%= user.PAN.createdAt.toLocaleDateString() %></p>
+                                                        <% }%>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <% } %>
-                                        <% }) %>
-                        </div>
-                    </div>
-                </div>
+                                </div>
+                            </div>
+                        </a>
+                    <% } %>
+                <% }) %>
             </div>
         </div>
-        <!-- main ends here -->
+        
+    <!-- main ends here -->
     </div>
 
 

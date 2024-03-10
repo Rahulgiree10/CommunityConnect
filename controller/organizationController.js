@@ -115,41 +115,51 @@ exports.enterPANDetails = async (req, res) => {
         const { PANNumber, PANName } = req.body;
 
         if (!req.file) {
-            req.flash('failure',`PAN Photo is not uploaded`);
+            req.flash('failure', `PAN Photo is not uploaded`);
             return res.redirect('/VerifyPAN');
         }
 
         const PANPic = req.file.filename;
         const userId = req.user.id;
-        console.log(userId);
 
         // Check if PAN details already exist for the user
         const existingPAN = await db.PAN.findOne({ where: { userId: userId } });
-        if (existingPAN && user.verification == 'NOT VERIFIED') {
-            req.flash('failure',`Organization is already verified`);
-            res.redirect('/VerifyPAN');
-            return; // Return here to prevent further execution
+        
+        if (existingPAN) {
+            if (user.verification === 'NOT VERIFIED') {
+                req.flash('failure', `Organization is already verified`);
+                return res.redirect('/VerifyPAN');
+            } else if (user.verification === 'PENDING') {
+                // Replace existing PAN details
+                await existingPAN.update({
+                    PANNumber,
+                    PANName,
+                    PANPic,
+                });
+
+                // Update user verification status to 'NOT VERIFIED'
+                await user.update({ verification: 'NOT VERIFIED' });
+            }
+        } else {
+            // If PAN details don't exist, create a new PAN record
+            await db.PAN.create({
+                PANNumber,
+                PANName,
+                PANPic,
+                userId: userId,
+            });
         }
 
-
-        // If PAN details don't exist, create a new PAN record
-        const newPAN = await db.PAN.create({
-            PANNumber,
-            PANName,
-            PANPic,
-            userId: userId,
-        });
-
-        req.flash('success',`PAN Details is successfully submitted`);
+        req.flash('success', `PAN Details have been successfully updated`);
         res.redirect("/createProgram");
     }
     catch (error) {
         console.error("Error inserting PAN details:", error);
         // error message
         res.redirect('/VerifyPAN');
-        return;
     }
 }
+
 
 exports.renderCreateProgram = async (req, res) => {
     const user = req.user;
