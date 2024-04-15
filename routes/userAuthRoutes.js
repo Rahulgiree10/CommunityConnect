@@ -16,6 +16,8 @@ router.route("/login").get(communityController.renderLogin).post(loginValidator,
 
 router.route('/signup').get(communityController.renderSignup).post(upload.single('profilePic'),signupValidator,communityController.signup);
 
+router.route('/SignupOTP').get(communityController.renderSignupOTP).post(communityController.verifySignupOTP);
+
 router.route('/OTPSend').get(communityController.renderForgotPassword).post(communityController.verifyEmail);
 
 router.route('/OTPVerify').get(communityController.renderOTPSend).post(communityController.verifyOTP);

@@ -13,7 +13,7 @@
 ::-webkit-scrollbar {
     scroll-behavior: smooth;
     display: none;
-  }
+}
 
 :root {
     --main-color: #0be3ee;
@@ -23,14 +23,12 @@
     color: var(--main-color);
 }
 
-.navbar
-{
+.navbar {
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav-link
-{
+.nav-link {
     color: black;
 }
 
@@ -38,14 +36,12 @@
     color: var(--main-color) !important;
 }
 
-.nav-item img
-{
+.nav-item img {
     height: 20px;
     width: 20px;
 }
 
-.navbar-brand img
-{
+.navbar-brand img {
     height: 40px;
     width: 40px;
 }
@@ -60,40 +56,46 @@
     border-bottom: 1px solid var(--main-color);
 }
 
-.information
-{
+.information {
     text-align: center;
     padding: 10px;
 }
 
 .header {
-    background-color: #F1F9EC;
+    background-color: white;
     position: relative;
 }
 
-.main-class
-{
+.main-class {
     height: 80vh;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
 }
 
 .information {
-    background-color: gainsboro; /* Light gray background */
+    background-color: gainsboro;
+    /* Light gray background */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    text-align: center; /* Center align text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    text-align: center;
+    /* Center align text */
     margin: 10px;
 }
 
 h1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a readable font */
-    font-size: 36px; /* Large font size */
-    color: #333; /* Dark text color */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
-    margin: 0; /* Remove default margin */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Choose a readable font */
+    font-size: 36px;
+    /* Large font size */
+    color: #333;
+    /* Dark text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    /* Subtle text shadow */
+    margin: 0;
+    /* Remove default margin */
 }
 
 .footer-head {
@@ -102,3 +104,75 @@ h1 {
     bottom: 0;
     z-index: 1000;
 }
+
+h3 {
+    font-weight: 300 !important;
+    font-size: 25px !important;
+}
+
+h4 {
+    font-size: 18px !important;
+    font-weight: 300 !important;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+  }
+  
+  .site-blocks-cover {
+    position: relative;
+  }
+  
+  .img-wrap {
+    overflow: hidden;
+  }
+  
+  .slide {
+    display: none;
+  }
+  
+  .slide img {
+    width: 1600px;
+    height: 700px;
+    display: block;
+  }
+  
+  .container .row {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .heading h1 {
+    font-size: 5rem;
+    font-weight: 1000;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+  }
+  
+  .text1 {
+    font-size: 2rem;
+    text-shadow: -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px -1px 0 #fff;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #007bff;
+    background-color: #007bff;
+  }
+  
+  .button:hover {
+    
+    color: #fff;
+  }
+  

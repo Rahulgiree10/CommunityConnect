@@ -18,19 +18,16 @@
     color: var(--main-color);
 }
 
-.navbar
-{
+.navbar {
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav-link
-{
+.nav-link {
     color: black;
 }
 
-.container-fluid img
-{
+.container-fluid img {
     height: 30px;
     width: 30px;
 }
@@ -40,8 +37,7 @@
 }
 
 
-.container-fluid img
-{
+.container-fluid img {
     height: 40px;
     width: 40px;
 }
@@ -57,25 +53,33 @@
 }
 
 .header {
-    background-color: #F1F9EC;
+    background-color: white;
     position: relative;
 }
 
 .information {
-    background-color: gainsboro; /* Light gray background */
+    background-color: gainsboro;
+    /* Light gray background */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    text-align: center; /* Center align text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    text-align: center;
+    /* Center align text */
     margin: 10px;
 }
 
 h1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a readable font */
-    font-size: 36px; /* Large font size */
-    color: #333; /* Dark text color */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
-    margin: 0; /* Remove default margin */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Choose a readable font */
+    font-size: 36px;
+    /* Large font size */
+    color: #333;
+    /* Dark text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    /* Subtle text shadow */
+    margin: 0;
+    /* Remove default margin */
 }
 
 .main-class {
@@ -84,31 +88,10 @@ h1 {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding-bottom: 70px; /* Adjust this value to match the height of your footer */
+    padding-bottom: 70px;
+    /* Adjust this value to match the height of your footer */
 }
 
-.main-class figure {
-    margin: 0 10px;
-    width: 30%; /* Adjust the width as needed */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.main-class blockquote {
-    font-style: italic;
-    color: #555;
-}
-
-.main-class figcaption {
-    text-align: right;
-    color: #777;
-}
-
-.quote-figure {
-    flex-basis: 25%; /* Set each quote to occupy 25% of the container width */
-    margin: 10px; /* Add some margin around each quote */
-}
 
 .footer-head {
     position: fixed;
@@ -120,4 +103,65 @@ h1 {
 ::-webkit-scrollbar {
     scroll-behavior: smooth;
     display: none;
-  }
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.site-blocks-cover {
+    position: relative;
+}
+
+.img-wrap {
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+}
+
+.slide img {
+    width: 1600px;
+    height: 700px;
+    display: block;
+}
+
+.container .row {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.heading h1 {
+    font-size: 5rem;
+    font-weight: 1000;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.text1 {
+    font-size: 2rem;
+    text-shadow: -1px 1px 0 #fff,
+        1px 1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px -1px 0 #fff;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #007bff;
+    background-color: #007bff;
+}
+
+.button:hover {
+
+    color: #fff;
+}

@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+
   <!-- Linking custom css file -->
   <link rel="stylesheet" href="/css/profile.css">
 
@@ -41,7 +42,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Khalti</a>
+                <a class="nav-link" href="/completedPrograms">Completed Programs</a>
               </li>
 
               <li class="nav-item">
@@ -65,28 +66,196 @@
       <!-- navbar ends here -->
 
       <!-- Card starts here -->
-      <div class="main-card">
-        <div class="card" style="width: 18rem;">
-          <img src="http://localhost:4000/<%= user.profilePic %>" class="card-img-top" alt="...">
-          <% if (user.verification==='VERIFIED' ) { %>
-            <img class="tick" src="/images/check.png" alt="">
-            <% } else if (user.verification==='PENDING' ) { %>
-              <img class="tick" src="/images/pending.png" alt="">
-              <% } else { %>
-                <img class="tick" src="/images/cross.png" alt="">
-             <% } %>
-              <div class="card-body">
-                <h5 class="card-title">Profile</h5>
-                <p class="card-text">Name: <%= user.name %>
-                </p>
-                <p class="card-text">Email: <%= user.email %>
-                </p>
-                <p class="card-text">Address: <%= user.address %>
-                </p>
-                <a href="/EditProfile"><button type="button" class="btn btn-primary">Edit</button></a>
-                <a href="/VerifyPAN"><button type="button" class="btn btn-primary">Verify Organization</button></a>
+      <div class="container emp-profile">
+        <form method="post">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-img">
+                <img src="http://localhost:4000/<%= user.profilePic %>" alt="" style="border-radius: 50%;" />
               </div>
-        </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="profile-head">
+                <h5>
+                  <%= user.name %>
+                </h5>
+                <h6>
+                  <lord-icon src="https://cdn.lordicon.com/iikoxwld.json" trigger="click"
+                    style="width:15px;height:15px">
+                  </lord-icon>
+                  <%= user.address %>
+                </h6>
+                <h5>
+                  <%= user.userType %>
+                </h5>
+                <div class="mb-3">
+                  <h5>Upload QR Code:</h5>
+                  <div class="input-group">
+                    <form action="/profile" method="POST" enctype="multipart/form-data">
+                          <input type="file" class="form-control" name="qr">
+                          <button type="submit" class="btn btn-outline-secondary">Upload</button>
+                        </form>
+                        </div>
+                  </div>
+              
+
+                <br>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                      aria-selected="true">User Details</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                      aria-controls="profile" aria-selected="false">KYC Details</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <a href="/EditProfile"><button type="button" class="btn btn-primary">Edit</button></a>
+              <a href="/VerifyPAN"><button type="button" class="btn btn-success">Verify</button></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-work">
+                <p style="font-size: 20PX;">Verification Status:</p>
+                <% if (user.verification==='VERIFIED' ) { %>
+                  <p>VERIFIED</p>
+                  <lord-icon src="https://cdn.lordicon.com/guqkthkk.json" trigger="click" 
+                    style="width:80px;height:80px">
+                  </lord-icon>
+                  <% } else if (user.verification==='PENDING' ) { %>
+                    <p>PENDING</p>
+                    <lord-icon src="https://cdn.lordicon.com/vgobapvi.json" trigger="click"
+                      style="width:80px;height:80px">
+                    </lord-icon>
+                    <% } else { %>
+                      <p>NOT VERIFIED</p>
+                      <lord-icon src="https://cdn.lordicon.com/jqnbdcqr.json" trigger="click" 
+                        style="width:80px;height:80px">
+                      </lord-icon>
+                      <% } %>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>User Name</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>
+                        <%= user.name %>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Address</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>
+                        <%= user.address %>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Email</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>
+                        <%= user.email %>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>user Type</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>
+                        <%= user.userType %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% if (user.verification==='VERIFIED' && 'PENDING' ) { %>
+                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>PAN Number</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <%= user.PAN.PANNumber %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>PAN Name</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <%= user.PAN.PANName %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Organization Name</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <%= user.PAN.OrganizationName %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Organization Type</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <%= user.PAN.OrganizationType %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Organization Address</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <%= user.PAN.OrganizationAddress %>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Organization Contact</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>
+                          <%= user.PAN.OrganizationContact %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <% } else { %>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <p>Please verify your Organization first</p>
+                    </div>
+                    <% } %>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
       <!-- Card ends here -->
 
@@ -108,6 +277,41 @@
   <!-- Foooter -->
 
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get the about and timeline tabs
+      var aboutTab = document.getElementById("home-tab");
+      var timelineTab = document.getElementById("profile-tab");
+
+      // Add click event listeners to the tabs
+      aboutTab.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        showTab("home"); // Show the about tab
+      });
+
+      timelineTab.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        showTab("profile"); // Show the timeline tab
+      });
+
+      // Function to show/hide the tabs
+      function showTab(tabId) {
+        // Hide all tabs
+        var tabs = document.querySelectorAll(".tab-pane");
+        tabs.forEach(function (tab) {
+          tab.classList.remove("show");
+          tab.classList.remove("active");
+        });
+
+        // Show the selected tab
+        var selectedTab = document.getElementById(tabId);
+        selectedTab.classList.add("show");
+        selectedTab.classList.add("active");
+      }
+    });
+  </script>
+
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>

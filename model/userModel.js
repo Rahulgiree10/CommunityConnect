@@ -35,6 +35,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ENUM('NOT VERIFIED', 'VERIFIED', 'PENDING'),
             allowNull: false,
             defaultValue: 'NOT VERIFIED'
+        },
+        rewardPoints: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         }
     });
     

@@ -20,4 +20,25 @@ const PANPictureStorage = multer.diskStorage({
     }
 });
 
-module.exports = { multer, profileStorage, PANPictureStorage};
+// Configure the storage destination and filename of document
+const documentStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads/document');
+    },
+    filename: (req, file, cb) => {
+        cb(null, 'document-' + Date.now() + '-' + file.originalname);
+    }
+});
+
+// Configure the storage destination and filename of document
+const qrStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        console.log('I am working.')
+        cb(null, './uploads/qr');
+    },
+    filename: (req, file, cb) => {
+        cb(null, 'qr-' + Date.now() + '-' + file.originalname);
+    }
+});
+
+module.exports = { multer, profileStorage, PANPictureStorage, documentStorage, qrStorage};

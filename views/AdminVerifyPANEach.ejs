@@ -58,7 +58,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/AdminViewDocument" class="sidebar-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-file-earmark-check-fill" viewBox="0 0 16 16">
                             <path
@@ -92,7 +92,7 @@
                                 <h5 class="mb-0 pt-3">
                                     <%= user.PAN.PANName %>
                                 </h5>
-                                <span class="text-muted small d-block mb-4">Organization Type:</span>
+                                <span class="text-muted small d-block mb-4">Organization Type:<%= user.PAN.OrganizationType %></span>
                                 <div class="row mx-0 border-top border-bottom">
                                     <div class="col-12 text-center border-end py-3">
                                         <h5 class="mb-0"><%= user.PAN.PANNumber %></h5>
@@ -101,12 +101,20 @@
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
-                                        <span class="text-muted small">Country</span>
-                                        <strong>Nepal</strong>
+                                        <span class="text-muted small">Organization Name</span>
+                                        <strong><%= user.PAN.OrganizationName %></strong>
                                     </li>
                                     <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
-                                        <span class="text-muted small">Location</span>
-                                        <strong>Barcelona, Spain</strong>
+                                        <span class="text-muted small">Organization Address</span>
+                                        <strong><%= user.PAN.OrganizationAddress %></strong>
+                                    </li>
+                                    <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
+                                        <span class="text-muted small">Organization Contact</span>
+                                        <strong><%= user.PAN.OrganizationContact%></strong>
+                                    </li>
+                                    <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
+                                        <span class="text-muted small">Email</span>
+                                        <strong><%= user.email %></strong>
                                     </li>
                                     <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
                                         <span class="text-muted small d-flex align-items-center">

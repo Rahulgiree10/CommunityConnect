@@ -1,3 +1,4 @@
+const { currentLineHeight } = require("pdfkit");
 const db = require("../model/community");
 const userModel = require("../model/userModel");
 const { validationResult } = require("express-validator");
@@ -31,13 +32,18 @@ exports.createQuote = async (req, res) => {
 
 
 exports.renderProfile = async (req, res) => {
-    const user = req.user;
+    const user = await db.user.findOne({
+        where: { id: req.user.id },
+        include: {
+            model: db.PAN // Assuming PAN details are associated with the user model
+        }
+    });
     res.render("OrganizationProfile", { user: user });
 }
 
-exports.renderProfileEdit = async (req, res) =>{
+exports.renderProfileEdit = async (req, res) => {
     const user = req.user;
-    res.render("ProfileEdit", {user:user});
+    res.render("ProfileEdit", { user: user });
 }
 
 // Controller function to update user's values
@@ -91,15 +97,16 @@ exports.renderVerifyOrganization = async (req, res) => {
     delete req.session.fData;
     const user = req.user;
 
-    res.render("verifyOrganization", 
-    { 
-        user: user,
-        validationErrors:validationErrors,
-        fData:fData,
-        message:message
-    });
+    res.render("verifyOrganization",
+        {
+            user: user,
+            validationErrors: validationErrors,
+            fData: fData,
+            message: message
+        });
 }
 
+//controller for verifying KYC details
 exports.enterPANDetails = async (req, res) => {
     const user = req.user;
     const result = validationResult(req);
@@ -112,7 +119,7 @@ exports.enterPANDetails = async (req, res) => {
     }
 
     try {
-        const { PANNumber, PANName } = req.body;
+        const { PANNumber, PANName, OrganizationName, OrganizationType, OrganizationAddress, OrganizationContact } = req.body;
 
         if (!req.file) {
             req.flash('failure', `PAN Photo is not uploaded`);
@@ -124,7 +131,7 @@ exports.enterPANDetails = async (req, res) => {
 
         // Check if PAN details already exist for the user
         const existingPAN = await db.PAN.findOne({ where: { userId: userId } });
-        
+
         if (existingPAN) {
             if (user.verification === 'NOT VERIFIED') {
                 req.flash('failure', `Organization is already verified`);
@@ -134,6 +141,10 @@ exports.enterPANDetails = async (req, res) => {
                 await existingPAN.update({
                     PANNumber,
                     PANName,
+                    OrganizationName,
+                    OrganizationType,
+                    OrganizationAddress,
+                    OrganizationContact,
                     PANPic,
                 });
 
@@ -145,6 +156,10 @@ exports.enterPANDetails = async (req, res) => {
             await db.PAN.create({
                 PANNumber,
                 PANName,
+                OrganizationName,
+                OrganizationType,
+                OrganizationAddress,
+                OrganizationContact,
                 PANPic,
                 userId: userId,
             });
@@ -164,17 +179,18 @@ exports.enterPANDetails = async (req, res) => {
 exports.renderCreateProgram = async (req, res) => {
     const user = req.user;
     const message = req.flash();
-    res.render("CreateProgram", { user: user, message:message});
+    res.render("CreateProgram", { user: user, message: message });
 }
 
+//Controller to create the programs
 exports.createProgram = async (req, res) => {
     const user = req.user;
     const userId = req.user.id;
     try {
         // Check if the user's verification status is 'VERIFIED'
         if (user.verification !== 'VERIFIED') {
-            req.flash('failure',`Organization is not verified`);
-            req.flash('warning',`Organization must be verified first`);
+            req.flash('failure', `Organization is not verified`);
+            req.flash('warning', `Organization must be verified first`);
             res.redirect('/createProgram');
             return;
         }
@@ -190,13 +206,19 @@ exports.createProgram = async (req, res) => {
             userId: userId,
         });
 
-        req.flash('success',`Program created successfully`);
+        // Create a chat record associated with the new program and the user
+        await db.chat.create({
+            programId: newProgram.id,
+            userId: userId,
+        });
+
+        req.flash('success', `Program created successfully`);
         // res.status(200).json({ profilePic: profilePic });
         res.redirect("/createProgram");
     }
     catch (error) {
         console.error("Error creating program:", error);
-        req.flash('failure',`Error creating program`);
+        req.flash('failure', `Error creating program`);
         return res.redirect('/createProgram');
     }
 }
@@ -244,7 +266,6 @@ exports.updateProgram = async (req, res) => {
         userId: userId,
     };
 
-
     await db.program.update(updatedData, {
         where: {
             id: req.params.programId,
@@ -254,3 +275,82 @@ exports.updateProgram = async (req, res) => {
     const program = await db.program.findAll();
     res.render("CreatedPrograms", { program: program, user: user });
 }
+
+exports.renderCompletedPrograms = async (req, res) => {
+    try {
+        const user = req.user;
+        let program = await db.program.findAll();
+
+        res.render("CompletedProgram", { user: user, program: program });
+    } catch (error) {
+        console.error("Error rendering completed programs:", error);
+        // Handle error appropriately
+        res.status(500).send("Error rendering completed programs");
+    }
+}
+
+
+
+exports.submitDocument = async (req, res) => {
+    const user = req.user;
+    const programId = req.params.programId || req.query.programId || req.body.programId;
+    console.log(programId);
+
+    try {
+        const program = await db.program.findOne({
+            where: { id: programId }
+        });
+
+        if (!program) {
+            console.error("Program not found");
+            return res.redirect("/organizationHome");
+        }
+
+        if (!req.file) {
+            console.error("No file attached");
+            return res.redirect("/organizationHome");
+        }
+
+        const document = req.file.filename;
+        console.log(document);
+
+        const newDocument = await db.document.create({
+            file: document,
+            programId: programId,
+            userId: user.id
+        });
+
+        res.redirect("/organizationHome")
+    }
+    catch (error) {
+        console.error("Error creating document:", error);
+        return res.redirect("/createdPrograms");
+    }
+};
+
+exports.submitQr = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        console.log(userId);
+        
+        console.log(req.body)
+
+        if (!req.file) {
+            console.error("No file attached");
+            return res.status(400).json({ error: "No file attached" });
+        }
+
+        const qrImage = req.file.filename;
+        // console.log('The image of qr is', qrImage);
+
+        const newQR = await db.payment.create({
+            qrImage,
+            userId:userId
+        });
+
+        res.redirect("/organizationHome")
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};

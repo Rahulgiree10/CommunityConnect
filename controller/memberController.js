@@ -6,37 +6,71 @@ exports.renderMemberHome = async (req, res) => {
     const message = req.flash();
     const quotes = await db.Quote.findAll();
 
-    res.render("memberHome",{user:user,message:message, quotes:quotes});
+    res.render("memberHome", { user: user, message: message, quotes: quotes });
 }
 
 exports.renderMemberProfile = async (req, res) => {
     const user = req.user;
-    res.render("memberProfile",{user:user});
+    res.render("memberProfile", { user: user });
 }
+
+exports.renderMemberProfileEdit = async (req, res) => {
+    const user = req.user;
+    res.render("MemberProfileEdit", { user: user });
+}
+
+// Controller function to update user's values
+exports.updateUser = async (req, res) => {
+    try {
+        // Assuming you are using a form with inputs like name, email, password
+        const { name, email, address } = req.body;
+        let profilePic;
+
+        // Check if a file was uploaded
+        if (req.file) {
+            profilePic = req.file.filename;
+        }
+
+        // Find the user by ID
+        const user = await db.user.findOne({ where: { id: req.user.id } });
+
+        if (!user) {
+            // Handle case where user is not found
+            return res.status(404).send("User not found");
+        }
+
+        // Update user's values
+        user.name = name;
+        user.email = email;
+        user.address = address;
+        if (profilePic) {
+            user.profilePic = profilePic;
+        }
+
+        // Save the updated user
+        await user.save();
+
+        // Redirect to a page or send a response indicating success
+        res.redirect('/memberProfile');
+    } catch (err) {
+        console.error(err);
+        // Handle errors appropriately
+        res.status(500).send("Error updating user");
+    }
+};
 
 exports.renderjoinProgram = async (req, res) => {
     const user = req.user;
     const message = req.flash();
-    const program = await db.program.findAll();
+    const program = await db.program.findAll({
+        where: {
+            programStatus: 'ACTIVE'
+        }
+    });    
 
-    res.render("joinProgram",{user:user, program:program, message:message});
+    res.render("joinProgram", { user: user, program: program, message: message });
 }
 
-// Controller function to handle program search
-exports.searchProgram = async (req, res) => {
-    try {
-        const { programName } = req.query; // Extract the program name from the query parameters
-        
-        // Query the database for programs matching the search criteria
-        const programs = await Program.find({ programTitle: { $regex: new RegExp(programName, 'i') } });
-        
-        // Send the matched programs as a response
-        res.json(programs);
-    } catch (error) {
-        console.error('Error searching for programs:', error);
-        res.status(500).json({ error: 'Failed to search for programs' });
-    }
-}
 
 // Controller function to handle program search
 exports.searchProgram = async (req, res) => {
@@ -44,17 +78,17 @@ exports.searchProgram = async (req, res) => {
     try {
         const { programName } = req.body; // Extracting the program name from the request body
         const { programLocation } = req.body; // Extracting the program location from the request body
-        
+
         // Querying the database for programs matching the search criteria
         const programs = await db.program.findAll({
             where: {
-                programTitle: { [db.Sequelize.Op.like]: `%${programName}%`},            
-                programLocation: { [db.Sequelize.Op.like]: `%${programLocation}%`},            
+                programTitle: { [db.Sequelize.Op.like]: `%${programName}%` },
+                programLocation: { [db.Sequelize.Op.like]: `%${programLocation}%` },
             }
         });
-        
+
         const user = req.user;
-        res.render("joinProgram", { user: user, program: programs,message:message });
+        res.render("joinProgram", { user: user, program: programs, message: message });
     } catch (error) {
         console.error('Error searching for programs:', error);
         return res.redirect('/joinProgram');
@@ -88,7 +122,7 @@ exports.joinProgram = async (req, res) => {
         });
 
         // Redirect to a success page or display a success message
-        req.flash('success','You have successfully joined the program.');
+        req.flash('success', 'You have successfully joined the program.');
         return res.redirect('/joinedPrograms'); // Redirect to the dashboard or any other appropriate page
     } catch (error) {
         console.error('Error joining program:', error);
@@ -105,22 +139,27 @@ exports.renderJoinedPrograms = async (req, res) => {
         const user = req.user;
 
         const joinedPrograms = await db.joined.findAll({
-            where: { 
-                UserId: userId 
+            where: {
+                UserId: userId,
             },
-            include: 
-            {
-                model:db.program,
+            include: {
+                model: db.program,
+                where: {
+                    programStatus: 'ACTIVE'
+                },
                 required: true
-            } 
+            }
         });
+        
 
         console.log(joinedPrograms);
 
-        
-        res.render("joinedProgram", { joinedPrograms , user:user, message:message});
+
+        res.render("joinedProgram", { joinedPrograms, user: user, message: message });
     } catch (error) {
         console.error('Error fetching joined programs:', error);
-        return res.redirect('/joinedPrograms'); 
+        return res.redirect('/joinedPrograms');
     }
 };
+
+

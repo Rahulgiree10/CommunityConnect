@@ -13,7 +13,7 @@
 ::-webkit-scrollbar {
     scroll-behavior: smooth;
     display: none;
-  }
+}
 
 :root {
     --main-color: #0be3ee;
@@ -23,14 +23,12 @@
     color: var(--main-color);
 }
 
-.navbar
-{
+.navbar {
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav-link
-{
+.nav-link {
     color: black;
 }
 
@@ -38,14 +36,12 @@
     color: var(--main-color) !important;
 }
 
-.nav-item img
-{
+.nav-item img {
     height: 20px;
     width: 20px;
 }
 
-.navbar-brand img
-{
+.navbar-brand img {
     height: 40px;
     width: 40px;
 }
@@ -60,49 +56,112 @@
     border-bottom: 1px solid var(--main-color);
 }
 
-.information
-{
+.information {
     text-align: center;
     padding: 10px;
 }
 
 .header {
-    background-color: #F1F9EC;
+    background-color: white;
     position: relative;
 }
 
-.mainCreate
-{
+.mainCreate {
     height: 90vh;
     display: flex;
     align-items: baseline;
     justify-content: center;
 }
 
-.createProgram
-{
+.createProgram {
     background-color: whitesmoke;
     padding: 40px;
     border-radius: 20px;
-    border: 2px solid black; 
+    border: 2px solid black;
 }
 
 .information {
-    background-color: gainsboro; /* Light gray background */
+    background-color: gainsboro;
+    /* Light gray background */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    text-align: center; /* Center align text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    text-align: center;
+    /* Center align text */
     margin: 10px;
-    margin-bottom: 40px;
 }
 
 h1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a readable font */
-    font-size: 36px; /* Large font size */
-    color: #333; /* Dark text color */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
-    margin: 0; /* Remove default margin */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 36px;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+.contact-form {
+    background: whitesmoke;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+    border: 2px solid black;
+}
+
+.contact-form .form-control {
+    border-radius: 1rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.contact-image {
+    text-align: center;
+}
+
+.contact-image .lordicon {
+    border-radius: 6rem;
+    width: 11%;
+    margin-top: -3%;
+    transform: rotate(29deg);
+}
+
+.contact-form form {
+    padding: 14%;
+}
+
+.contact-form form .row {
+    margin-bottom: -7%;
+}
+
+.contact-form h3 {
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #0062cc;
+}
+
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btnContactSubmit {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
 }
 
 .footer-head {

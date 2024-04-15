@@ -32,7 +32,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link act" aria-current="page" href="/memberHome">Home</a>
-                              </li>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="/joinProgram">Join Program</a>
@@ -43,9 +43,12 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="/joinedChat">Joined chat</a>
+                            </li>
+
+                            <li class="nav-item">
                                 <div class="btn-group dropstart">
-                                    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
+                                    <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img class="tick" src="/images/profile.png" alt="">
                                     </button>
 
@@ -63,22 +66,33 @@
             </nav>
             <!-- navbar ends here -->
 
-            <div class="information">
-                <h1 style="color: black;">Home</h1>
-            </div>
-
             <!-- Create program starts here -->
-            <div class="main-class">
-                <% quotes.forEach(function(quote, index) { %>
-                    <figure class="quote-figure">
-                        <blockquote class="blockquote">
-                            <p><%= quote.detail %></p>
-                        </blockquote>
-                        <figcaption class="blockquote-footer">
-                            <%= quote.source %>
-                        </figcaption>
-                    </figure>
-                <% }); %>
+            <div class="content">
+                <div class="site-blocks-cover">
+                    <div class="img-wrap">
+                        <div class="owl-carousel slide-one-item hero-slider">
+                            <div class="slide">
+                                <img src="/images/socialwork/4.jpg" alt="Free Website Template by Free-Template.co">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 ml-auto align-self-center">
+                                <div class="intro">
+                                    <div class="heading">
+                                        <h1 class="text-white font-weight-bold">CommunityConnect</h1>
+                                    </div>
+                                    <div class="text sub-text">
+                                        <p><a href="/joinProgram"
+                                                class="button btn btn-outline-primary btn-md btn-pill"><b>Join
+                                                    Program</b></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Create program ends here -->
 
@@ -97,6 +111,7 @@
         </footer>
     </div>
     <!-- Foooter -->
+    <script src="/script/main.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

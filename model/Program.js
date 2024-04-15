@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT, 
             allowNull: false,
         },
+        programStatus: {
+            type: DataTypes.STRING, 
+            allowNull: false,
+            defaultValue: 'ACTIVE'
+        },
     });
     
     return Program;

@@ -37,6 +37,11 @@ body {
     color: #000;
 }
 
+.icon-container {
+    display: inline-flex;
+    align-items: center;
+  }
+
 #sidebar {
     width: 70px;
     min-width: 70px;

@@ -59,7 +59,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/AdminViewDocument" class="sidebar-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-file-earmark-check-fill" viewBox="0 0 16 16">
                             <path
@@ -82,6 +82,7 @@
             <div class="container">
                 <% user.forEach(user=> { %>
                     <% if (user.verification==='VERIFIED' ) { %>
+                        <a href="/AdminVerifiedPANEach/<%= user.id %>">
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="card mb-3 card-body">
@@ -94,17 +95,14 @@
                                                 <div class="overflow-hidden flex-nowrap">
                                                     <h6 class="mb-1">
                                                         <%= user.name %>
-                                                    </h6>
-                                                    <form id="removeForm_<%= user.id %>" action="/removePANDetails/<%= user.id %>" method="POST">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger remove-btn" data-user-id="<%= user.id %>">Remove</button>
-                                                    </form> 
+                                                    </h6> 
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </a>
                         <% } %>
                             <% }) %>
             </div>

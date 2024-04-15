@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar With Bootstrap</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/verifyEach.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <aside id="sidebar">
+      <div class="d-flex">
+        <button class="toggle-btn" type="button">
+          <i class="lni lni-grid-alt"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="/AdminHome">CC Admin</a>
+        </div>
+      </div>
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="/adminProfile" class="sidebar-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+            </svg>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="/AdminViewPAN" class="sidebar-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
+              <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+            </svg>
+            <span>Verify Organization</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a href="/AdminViewVerifiedPAN" class="sidebar-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
+              <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+            </svg>
+            <span>Verified Organization</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a href="/AdminViewDocument" class="sidebar-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-file-earmark-check-fill" viewBox="0 0 16 16">
+              <path
+                d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m1.354 4.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+            </svg>
+            <span>Verify Document</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="/logout" class="sidebar-link">
+          <i class="lni lni-exit"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- main starts here -->
+    <div class="main p-3 d-flex justify-content-center align-items-center">
+      <div class="container">
+        <% if (user) { %>
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="col-xl-4 col-md-4 mb-3 mb-lg-5">
+              <!--Card-->
+              <div class="card overflow-hidden text-center">
+                <!-- Card image -->
+                <img src="http://localhost:4000/<%= user.PAN.PANPic %>" class="card-img-top img-fluid w-100 h-auto"
+                  style="max-width: 432px; height: 120px;" alt="">
+                <!--Card body-->
+                <div class="card-body p-0">
+                  <!-- Avatar -->
+                  <h5 class="mb-0 pt-3">
+                    <%= user.PAN.PANName %>
+                  </h5>
+                  <span class="text-muted small d-block mb-4">Organization Type:<%= user.PAN.OrganizationType %></span>
+                  <div class="row mx-0 border-top border-bottom">
+                    <div class="col-12 text-center border-end py-3">
+                      <h5 class="mb-0">
+                        <%= user.PAN.PANNumber %>
+                      </h5>
+                      <small class="text-muted">PAN Number</small>
+                    </div>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
+                      <span class="text-muted small">Organization Name</span>
+                      <strong>
+                        <%= user.PAN.OrganizationName %>
+                      </strong>
+                    </li>
+                    <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
+                      <span class="text-muted small">Organization Address</span>
+                      <strong>
+                        <%= user.PAN.OrganizationAddress %>
+                      </strong>
+                    </li>
+                    <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
+                      <span class="text-muted small">Organization Contact</span>
+                      <strong>
+                        <%= user.PAN.OrganizationContact%>
+                      </strong>
+                    </li>
+                    <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
+                      <span class="text-muted small">Email</span>
+                      <strong>
+                        <%= user.email %>
+                      </strong>
+                    </li>
+                    <li class="list-group-item px-3 d-flex align-items-center justify-content-between">
+                      <span class="text-muted small d-flex align-items-center">
+                        <lord-icon src="https://cdn.lordicon.com/hjbrplwk.json" trigger="loop"
+                          colors="primary:#646e78,secondary:#c71f16,tertiary:#ebe6ef,quaternary:#3a3347" delay="500"
+                          style="width: 40px; height: 40px">
+                        </lord-icon>
+                      </span>
+                      <div class="text-end">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeUserModal_<%= user.id %>">
+                          Remove
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="removeUserModal_<%= user.id %>" tabindex="-1" aria-labelledby="removeUserModalLabel_<%= user.id %>" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="removeUserModalLabel_<%= user.id %>">Confirmation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure you want to remove this user?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <form id="removeForm_<%= user.id %>" action="/removePANDetails/<%= user.id %>" method="POST">
+                                  <input type="hidden" name="_method" value="DELETE" />
+                                  <button type="submit" class="btn btn-danger">Remove</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } else { %>
+            <p>User is not available</p>
+            <% } %>
+      </div>
+    </div>
+
+    <!-- main ends here -->
+
+    <!-- main ends here -->
+  </div>
+
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <script src="/script/adminHome.js"></script>
+</body>
+
+</html>

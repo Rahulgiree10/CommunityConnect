@@ -57,42 +57,78 @@ exports.signup = async (req, res) => {
   if (!result.isEmpty()) {
     req.session.validationErrors = result.mapped();
     req.session.fData = req.body;
-    res.redirect("/signup");
+    return res.redirect("/signup");
   }
-  else {
-    try {
-      // The user data is extracted from the request body
-      const { email, password, name, address, userType } = req.body;
 
-      if (!req.file) {
-        // Handle case where no file is uploaded
-        return res.redirect("signup");
-      }
+  try {
+    // The user data is extracted from the request body
+    const { email, password, name, address, userType } = req.body;
 
-
-      const profilePic = req.file.filename;
-
-      const encPassword = bcrypt.hashSync(password, 10);
-      console.log(encPassword);
-
-
-      const newUser = await db.user.create({
-        email,
-        password: encPassword,
-        name,
-        address,
-        userType,
-        profilePic,
-      });
-
-      req.flash('success', `Successfully created account`);
-      res.redirect("/login");
+    if (!req.file) {
+      // Handle case where no file is uploaded
+      return res.redirect("signup");
     }
-    catch (error) {
-      console.error("Error creating user:", error);
-      req.flash('failure', `Error creating user`);
-      return res.redirect("/signup");
+
+    const profilePic = req.file.filename;
+
+    const encPassword = bcrypt.hashSync(password, 10);
+    console.log(encPassword);
+
+    const newUser = await db.user.create({
+      email,
+      password: encPassword,
+      name,
+      address,
+      userType,
+      profilePic,
+    });
+
+    // Generate and send OTP
+    const OTP = Math.floor(100000 + Math.random() * 900000);
+    req.session.signupOTP = OTP;
+
+    // Send OTP to user's email
+    const message = `Your OTP for signup is: ${OTP}`;
+    const options = {
+      to: email,
+      text: message,
+      subject: "Signup OTP",
+    };
+    await sendEmail(options);
+
+    res.redirect("/SignupOTP");
+  } catch (error) {
+    console.error("Error creating user:", error);
+    req.flash('failure', `Error creating user`);
+    return res.redirect("/signup");
+  }
+};
+
+exports.renderSignupOTP = async (req, res) => {
+  res.render("signupOTP");
+}
+
+// Controller for verifying OTP
+exports.verifySignupOTP = async (req, res) => {
+  try {
+    const { otp } = req.body;
+    const storedOTP = req.session.signupOTP;
+
+    if (!otp || !storedOTP || otp !== storedOTP.toString()) {
+      // If OTP doesn't match or is not present in session
+      req.flash('failure', 'Invalid OTP. Please try again.');
+      return res.redirect("/SignupOTP");
     }
+
+    // OTP matched, proceed with user registration
+    delete req.session.signupOTP;
+
+    req.flash('success', 'OTP verification successful. You are now registered.');
+    res.redirect("/login"); // Redirect to login page or any other appropriate page
+  } catch (error) {
+    console.error("Error verifying OTP:", error);
+    req.flash('failure', 'Error verifying OTP. Please try again.');
+    res.redirect("/verify-otp");
   }
 };
 

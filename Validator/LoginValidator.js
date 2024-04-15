@@ -13,4 +13,5 @@ module.exports =
     .not()
     .isEmpty()
     .withMessage("Password must be filled !"),
+
 ]

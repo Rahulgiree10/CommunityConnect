@@ -71,56 +71,87 @@
       <!-- navbar ends here -->
 
       <div class="information">
-        <h1 style="color: black;">Verify PAN</h1>
+        <h1 style="color: black;">Verify KYC</h1>
       </div>
 
       <!-- Create program starts here -->
 
-      <html>
-
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign Up Form</title>
-      </head>
-
-      <body>
-
-          <fieldset>
-            <form action="/verifyPAN" method="post" enctype="multipart/form-data">
-            <legend><span class="number">1</span> PAN info</legend>
-            <div>
-              <% if (validationErrors && validationErrors.PANNumber) { %>
-                <div class="error-message">
-                    <span><%= validationErrors.PANNumber.msg %></span>
-                </div>
-            <% } %> 
-              <label for="PANNumber">PANNumber:</label>
-              <input type="text" id="PANNumber" name="PANNumber" value="<%=fData.PANNumber %>">
-            </div>
-            <div>
-              <% if (validationErrors && validationErrors.PANName) { %>
-                <div class="error-message">
-                    <span><%= validationErrors.PANName.msg %></span>
-                </div>
-            <% } %>
-              <label for="PANName">PANName:</label>
-              <input type="text" id="PANName" name="PANName" value="<%=fData.PANName %>">
-            </div>
-            <div>
-            <label for="mail">PANImage:</label>
-            <input type="file" class="form-control" id="PANPic" name="PANPic">
-          </div>
-          <div class="submitButton">
-          <button type="submit" class="btn btn-success btn-small">Submit</button>
+      <div class="container contact-form">
+        <div class="contact-image">
+          <lord-icon class="lordicon" src="https://cdn.lordicon.com/yqiuuheo.json" trigger="loop" delay="200"
+            style="width:80px;height:80px"> </lord-icon>
         </div>
-          </fieldset>
+        <form action="/verifyPAN" method="post" enctype="multipart/form-data">
+          <h3>fill up the details to verify Organization</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <% if (validationErrors && validationErrors.PANNumber) { %>
+                  <div class="error-message">
+                    <span>
+                      <%= validationErrors.PANNumber.msg %>
+                    </span>
+                  </div>
+                  <% } %>
+                    <input type="text" name="PANNumber" class="form-control" placeholder="PANNumber" value="<%=fData.PANNumber %>" />
+              </div>
+              <div class="form-group">
+                <% if (validationErrors && validationErrors.PANName) { %>
+                  <div class="error-message">
+                      <span><%= validationErrors.PANName.msg %></span>
+                  </div>
+              <% } %>
+                <input type="text" name="PANName" class="form-control" placeholder="PANName" value="<%=fData.PANName %>" />
+              </div>
+
+              <div class="form-group">
+                <% if (validationErrors && validationErrors.OrganizationName) { %>
+                  <div class="error-message">
+                      <span><%= validationErrors.OrganizationName.msg %></span>
+                  </div>
+              <% } %>
+                <input type="text" name="OrganizationName" class="form-control" placeholder="OrganizationName" value="<%=fData.OrganizationName %>" />
+              </div>
+
+              <div class="form-group">
+                <% if (validationErrors && validationErrors.OrganizationType) { %>
+                  <div class="error-message">
+                      <span><%= validationErrors.OrganizationType.msg %></span>
+                  </div>
+              <% } %>
+                <input type="text" name="OrganizationType" class="form-control" placeholder="OrganizationType" value="<%=fData.OrganizationType %>" />
+              </div>
+
+              <div class="form-group">
+                <% if (validationErrors && validationErrors.OrganizationAddress) { %>
+                  <div class="error-message">
+                      <span><%= validationErrors.OrganizationAddress.msg %></span>
+                  </div>
+              <% } %>
+                <input type="text" name="OrganizationAddress" class="form-control" placeholder="OrganizationAddress" value="<%=fData.OrganizationAddress %>" />
+              </div>
+
+              <div class="form-group">
+                <% if (validationErrors && validationErrors.OrganizationContact) { %>
+                  <div class="error-message">
+                      <span><%= validationErrors.OrganizationContact.msg %></span>
+                  </div>
+              <% } %>
+                <input type="text" name="OrganizationContact" class="form-control" placeholder="OrganizationContact" value="<%=fData.OrganizationContact %>" />
+              </div>
+
+              <div class="form-group">
+                <input type="file" name="PANPic" class="form-control" placeholder="PANPic" value="" />
+              </div>
+
+              <div class="form-group">
+                <input type="submit" name="btnSubmit" class="btn btn-primary" value="Submit" />
+              </div>
+            </div>
+
+          </div>
         </form>
-
-      </body>
-
-      </html>
-
+      </div>
 
       <!-- Create program ends here -->
 

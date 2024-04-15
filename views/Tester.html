@@ -9,11 +9,12 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <!-- Linking custom css file -->
-  <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./dist/noty.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
-    
+  <link rel="stylesheet" href="/css/verifyOrganization.css">
+  <link rel="stylesheet" href="./dist/noty.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
+
 
 </head>
 
@@ -32,27 +33,32 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/memberHome">Home</a>
-                  </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/organizationHome">Home</a>
+              </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/joinProgram">Join Program</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/createProgram">Create Program</a>
+              </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/joinedPrograms">Joined Programs</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/createdPrograms">created Programs</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">Khalti</a>
+              </li>
 
               <li class="nav-item">
                 <div class="btn-group dropstart">
                   <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img " src="/images/profile.png" alt="">
+                    <img class="tick" src="/images/profile.png" alt="">
                   </button>
 
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="/memberProfile">My Profile</a></li>
-                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="/profile">My Profile</a></li>
+                    <li><a class="dropdown-item" href="/logout"><button type="button"
+                          class="btn text-danger">Logout</button></a></li>
                   </ul>
                 </div>
               </li>
@@ -65,33 +71,56 @@
       <!-- navbar ends here -->
 
       <div class="information">
-        <div>
-            
-      </div>
+        <h1 style="color: black;">Verify PAN</h1>
       </div>
 
       <!-- Create program starts here -->
-      
-      <!-- Create program starts here -->
-<div class="main-card">
-    <div class="chat-container">
-      <div class="chat">
-        <div class="chat-message">
-          <div class="chat-bubble">Hi there! How can I assist you today?</div>
+
+      <html>
+
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up Form</title>
+      </head>
+
+      <body>
+
+          <fieldset>
+            <form action="/verifyPAN" method="post" enctype="multipart/form-data">
+            <legend><span class="number">1</span> PAN info</legend>
+            <div>
+              <% if (validationErrors && validationErrors.PANNumber) { %>
+                <div class="error-message">
+                    <span><%= validationErrors.PANNumber.msg %></span>
+                </div>
+            <% } %> 
+              <label for="PANNumber">PANNumber:</label>
+              <input type="text" id="PANNumber" name="PANNumber" value="<%=fData.PANNumber %>">
+            </div>
+            <div>
+              <% if (validationErrors && validationErrors.PANName) { %>
+                <div class="error-message">
+                    <span><%= validationErrors.PANName.msg %></span>
+                </div>
+            <% } %>
+              <label for="PANName">PANName:</label>
+              <input type="text" id="PANName" name="PANName" value="<%=fData.PANName %>">
+            </div>
+            <div>
+            <label for="mail">PANImage:</label>
+            <input type="file" class="form-control" id="PANPic" name="PANPic">
+          </div>
+          <div class="submitButton">
+          <button type="submit" class="btn btn-success btn-small">Submit</button>
         </div>
-        <div class="chat-message self">
-          <div class="chat-bubble">I'm looking to create a new program. Can you guide me through the process?</div>
-        </div>
-        <!-- More chat messages can be added here -->
-      </div>
-      <div class="chat-input">
-        <input type="text" placeholder="Type your message here..." />
-        <button class="btn btn-primary">Send</button>
-      </div>
-    </div>
-  </div>
-  <!-- Create program ends here -->
-  
+          </fieldset>
+        </form>
+
+      </body>
+
+      </html>
+
 
       <!-- Create program ends here -->
 
@@ -112,9 +141,11 @@
   </div>
   <!-- Foooter -->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <%- include('./partials/noty') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>

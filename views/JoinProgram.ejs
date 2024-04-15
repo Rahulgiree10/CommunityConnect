@@ -44,10 +44,14 @@
                     <a class="nav-link" href="/joinedPrograms">Joined Programs</a>
                 </li>
 
+                <li class="nav-item">
+                  <a class="nav-link" href="/joinedChat">Joined chat</a>
+              </li>
+
               <li class="nav-item">
                 <div class="btn-group dropstart">
                   <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img " src="/images/profile.png" alt="">
+                    <img  class="tick" src="/images/profile.png" alt="">
                   </button>
 
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -95,7 +99,7 @@
                                 </h1>
                                 <div class="postcard__subtitle small">
                                     <time datetime="<%= program.programDate %> <%= program.programTime %>">
-                                        <i class="fas fa-calendar-alt mr-2"></i><%= program.programDate %>,<%= program.programTime %>
+                                        <i class="fas fa-calendar-alt mr-2"></i>Date:<%= program.programDate %>, Time:<%= program.programTime %>
                                     </time>
                                 </div>
                                 <div class="postcard__bar"></div>
